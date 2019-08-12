@@ -11,13 +11,11 @@ import java.util.Map;
 
 
 @Path("/test")
-public class TestResource
-{
+public class TestResource {
     @GET
     @Path("/nice/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserById(@PathParam("id") Integer id)
-    {
+    public Response getUserById(@PathParam("id") Integer id) {
         Map<String, Object> test = new HashMap<>();
         test.put("aa", "Nice");
         test.put("id", id);

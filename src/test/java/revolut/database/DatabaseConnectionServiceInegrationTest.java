@@ -42,6 +42,6 @@ public class DatabaseConnectionServiceInegrationTest {
         connection = service.getConnection();
 
         Assertions.assertNotNull(connection);
-        Assertions.assertFalse(!connection.isClosed());
+        Assertions.assertFalse(connection.isClosed());
     }
 }

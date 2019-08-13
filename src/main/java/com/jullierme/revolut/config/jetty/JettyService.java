@@ -1,4 +1,4 @@
-package com.jullierme.revolut.config;
+package com.jullierme.revolut.config.jetty;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,7 +7,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
 
-import static com.jullierme.revolut.config.PropertiesConfigurationService.configuration;
+import static com.jullierme.revolut.config.commonsConfigurations.CommonsConfigurationsService.configuration;
 import static org.eclipse.jetty.servlet.ServletContextHandler.NO_SESSIONS;
 
 public class JettyService {

@@ -1,4 +1,4 @@
-package com.jullierme.revolut.config;
+package com.jullierme.revolut.config.commonsConfigurations;
 
 import com.jullierme.revolut.Application;
 import org.apache.commons.configuration2.Configuration;
@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-public class PropertiesConfigurationService {
+public class CommonsConfigurationsService {
     private static final Logger logger = LogManager.getLogger(Application.class);
 
     public static Configuration configuration;

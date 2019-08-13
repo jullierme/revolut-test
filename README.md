@@ -37,6 +37,10 @@ a pre-installed container/server).
 #### Database migration 
    
    - Flyway
+ 
+#### Dependency Injection 
+
+   - Google Guice  
 
 #### System logs
 

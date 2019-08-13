@@ -18,18 +18,8 @@ a pre-installed container/server).
 10. There are no detailed requirements, use common sense.
 
 
-# Instructions
+# Information
 
-
-
-### Build
-
-    $ gradle build
-
-### Run
-
-    $ java -jar revolut-1.0-SNAPSHOT-all.jar
-    
 ### Libraries
 
 #### Web container to serve the app 
@@ -61,3 +51,14 @@ a pre-installed container/server).
 
    - JUnit 5
    - Mockito
+
+# Instructions
+
+### Build
+
+    $ gradle build
+
+### Run
+
+    $ java -jar revolut-1.0-SNAPSHOT-all.jar
+    

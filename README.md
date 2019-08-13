@@ -30,3 +30,34 @@ a pre-installed container/server).
 
     $ java -jar revolut-1.0-SNAPSHOT-all.jar
     
+### Libraries
+
+#### Web container to serve the app 
+
+   - Jetty
+
+#### REST API (JAX-RS)
+   
+   - Jersey 
+   
+#### In-memory database 
+
+   - H2
+   
+#### Database migration 
+   
+   - Flyway
+
+#### System logs
+
+   - Log4j2
+    
+#### Load application properties file
+
+   - Commons Configuration2
+   - Commons Beanutils
+
+#### Unit test
+
+   - JUnit 5
+   - Mockito

@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'org.flywaydb.flyway' version '5.2.4'
 }
 
 group 'com.jullierme'
@@ -13,12 +14,15 @@ targetCompatibility = 1.8
 mainClassName = 'com.jullierme.revolut.Application'
 
 ext {
-    slf4jVersion = '1.7.26'
+    log4j2Version = '2.12.1'
     jettyVersion = '9.4.19.v20190610'
     jerseyVersion = '2.29'
     junitVersion = '5.5.1'
     jacksonDatabindVersion = '2.10.0.pr1'
     mockitoVersion = '3.0.0'
+    h2Version = '1.4.199'
+    commonsConfigurationVersion = '2.5'
+    commonsBeanutilsVersion = '1.9.3'
 }
 
 repositories {
@@ -26,8 +30,8 @@ repositories {
 }
 
 dependencies {
-    compile "org.slf4j:slf4j-api:${slf4jVersion}"
-    compile "org.slf4j:slf4j-simple:${slf4jVersion}"
+    compile "org.apache.logging.log4j:log4j-api:${log4j2Version}"
+    compile "org.apache.logging.log4j:log4j-core:${log4j2Version}"
 
     compile "org.eclipse.jetty:jetty-server:${jettyVersion}"
     compile "org.eclipse.jetty:jetty-servlet:${jettyVersion}"
@@ -35,14 +39,24 @@ dependencies {
     compile "org.glassfish.jersey.core:jersey-server:${jerseyVersion}"
     compile "org.glassfish.jersey.containers:jersey-container-servlet-core:${jerseyVersion}"
     compile "org.glassfish.jersey.containers:jersey-container-jetty-http:${jerseyVersion}"
-    /*to return json instead of text plain*/
+
+    /*To return json instead of text plain*/
     compile "org.glassfish.jersey.media:jersey-media-json-jackson:${jerseyVersion}"
     compile "org.glassfish.jersey.inject:jersey-hk2:${jerseyVersion}"
+
+    compile "com.h2database:h2:${h2Version}"
+
+    compile "org.apache.commons:commons-configuration2:${commonsConfigurationVersion}"
+    compile "commons-beanutils:commons-beanutils:${commonsBeanutilsVersion}"
 
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testCompile "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testCompile "org.mockito:mockito-core:${mockitoVersion}"
     testCompile "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+
+    // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
+    compile group: 'org.flywaydb', name: 'flyway-core', version: '6.0.0-beta2'
+
 }
 
 test {

@@ -17,7 +17,7 @@ public class CommonsConfigurationsService {
     public static void load() {
         logger.info("Loading the application properties file");
 
-        Configurations configs = new Configurations();
+        final Configurations configs = new Configurations();
 
         try {
             configuration = configs.properties(new File("application.properties"));

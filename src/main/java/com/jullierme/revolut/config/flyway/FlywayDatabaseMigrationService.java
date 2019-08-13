@@ -12,11 +12,11 @@ public class FlywayDatabaseMigrationService {
     public static void createDatabase() {
         logger.info("Creating the database...");
 
-        String url = configuration.getString("datasource.url");
-        String username = configuration.getString("datasource.username");
+        final String url = configuration.getString("datasource.url");
+        final String username = configuration.getString("datasource.username");
 
         // Create the Flyway instance and point it to the database
-        Flyway flyway = Flyway.configure()
+        final Flyway flyway = Flyway.configure()
                 .dataSource(url, username, null)
                 .load();
 

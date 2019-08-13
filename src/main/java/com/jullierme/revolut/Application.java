@@ -15,9 +15,9 @@ public class Application {
 
         CommonsConfigurationsService.load();
 
-        FlywayDatabaseMigrationService.createDatabase();
-
         GuiceService.creactInjectors();
+
+        FlywayDatabaseMigrationService.createDatabase();
 
         JettyService.start();
     }

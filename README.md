@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.com/jullierme/revolut-test.svg?branch=master)](https://travis-ci.org/jullierme/revolut-test)
+
 # Revolut test
 Design and implement a RESTful API (including data model and the backing implementation)  for money transfers between accounts.  
 

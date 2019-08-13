@@ -1,5 +1,5 @@
 language: java
-install: gradle wrapper --gradle-version=5.5.1 --distribution-type=all
+install: true
 
 os: linux
 dist: trusty

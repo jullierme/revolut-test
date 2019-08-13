@@ -56,6 +56,10 @@ a pre-installed container/server).
    - JUnit 5
    - Mockito
 
+#### Hosted continuous integration service
+
+   - Travis CI
+   
 # Instructions
 
 ### Build

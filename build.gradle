@@ -40,7 +40,7 @@ dependencies {
     compile "org.glassfish.jersey.containers:jersey-container-servlet-core:${jerseyVersion}"
     compile "org.glassfish.jersey.containers:jersey-container-jetty-http:${jerseyVersion}"
 
-    /*To return json instead of text plain*/
+    /*To return json instead of plain text*/
     compile "org.glassfish.jersey.media:jersey-media-json-jackson:${jerseyVersion}"
     compile "org.glassfish.jersey.inject:jersey-hk2:${jerseyVersion}"
 

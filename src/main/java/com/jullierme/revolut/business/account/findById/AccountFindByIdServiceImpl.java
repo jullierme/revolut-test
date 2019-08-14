@@ -18,7 +18,7 @@ public class AccountFindByIdServiceImpl implements AccountFindByIdService {
     }
 
     @Override
-    public Account findById(Long id) throws SQLException {
+    public Account find(Long id) throws SQLException {
         try (Connection conn = databaseConnectionService.getConnection();
              PreparedStatement ps = conn.prepareStatement(FIND_ACCOUNT_BY_ID_SQL)) {
             conn.setAutoCommit(true);

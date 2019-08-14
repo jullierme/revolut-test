@@ -5,5 +5,5 @@ import com.jullierme.revolut.model.Account;
 import java.sql.SQLException;
 
 public interface AccountFindByIdService {
-    Account findById(Long id) throws SQLException;
+    Account find(Long id) throws SQLException;
 }

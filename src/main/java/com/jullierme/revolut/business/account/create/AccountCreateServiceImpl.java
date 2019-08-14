@@ -39,7 +39,7 @@ public class AccountCreateServiceImpl implements AccountCreateService {
             if (generatedKeys.next()) {
                 conn.commit();
 
-                return accountFindByIdService.findById(generatedKeys.getLong(1));
+                return accountFindByIdService.find(generatedKeys.getLong(1));
             } else {
                 throw new RuntimeException("Error to retrieve the id");
             }

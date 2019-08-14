@@ -57,7 +57,7 @@ public class AccountFindByIdServiceIntegrationTest {
 
         Long id = account.getId();
 
-        account = accountFindByIdService.findById(id);
+        account = accountFindByIdService.find(id);
 
         assertNotNull(account);
         assertEquals(id, account.getId());

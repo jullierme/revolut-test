@@ -10,7 +10,7 @@ public class Application {
     private static final Logger logger = LogManager.getLogger(Application.class);
 
     public static void main(String[] args) {
-        logger.info("Jullierme, Revolut Needs You!");
+        logger.info("Starting Application");
 
         CommonsConfigurationsService.load();
 

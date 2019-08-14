@@ -2,6 +2,7 @@ package com.jullierme.revolut.business.account;
 
 import com.jullierme.revolut.config.integration.extension.database.DatabaseIntegrationTest;
 import com.jullierme.revolut.model.Account;
+import com.jullierme.revolut.model.AccountBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ public class AccountCreateServiceIntegrationTest {
 
     @Test
     void givenANewAccount_thenCreate_shouldSucceed() {
-        Account account = Account
+        Account account = AccountBuilder
                 .builder()
                 .accountNumber("12365478")
                 .sortCode("987654")

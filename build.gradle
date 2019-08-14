@@ -13,12 +13,6 @@ targetCompatibility = 1.8
 
 mainClassName = 'com.jullierme.revolut.Application'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 ext {
     log4j2Version = '2.12.1'
     jettyVersion = '9.4.19.v20190610'
@@ -31,8 +25,6 @@ ext {
     commonsConfigurationVersion = '2.5'
     commonsBeanutilsVersion = '1.9.3'
     flywayVersion = '6.0.0-beta2'
-    guiceVersion = '4.2.2'
-    lombokVersion = '1.18.8'
 }
 
 repositories {
@@ -40,8 +32,6 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-
     compile "org.apache.logging.log4j:log4j-api:${log4j2Version}"
     compile "org.apache.logging.log4j:log4j-core:${log4j2Version}"
 

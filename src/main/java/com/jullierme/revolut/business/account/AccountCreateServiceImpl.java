@@ -3,8 +3,6 @@ package com.jullierme.revolut.business.account;
 import com.jullierme.revolut.database.DatabaseConnectionService;
 import com.jullierme.revolut.exceptions.BusinessException;
 import com.jullierme.revolut.model.Account;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AccountCreateServiceImpl implements AccountCreateService {
-    private static final Logger logger = LogManager.getLogger(AccountCreateServiceImpl.class);
-
     private static final String INSERT_ACCOUNT_SQL = "INSERT INTO ACCOUNT " +
             "(NAME, ACCOUNT_NUMBER, SORT_CODE, BALANCE) VALUES (?, ?, ?, ?)";
 
@@ -47,16 +43,16 @@ public class AccountCreateServiceImpl implements AccountCreateService {
                 }
 
             } catch (SQLException e) {
-                printSQLException(e);
+                e.printStackTrace();
 
                 rollback(conn);
 
-                throw new BusinessException(e);
+                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
-            printSQLException(e);
+            e.printStackTrace();
 
-            throw new BusinessException("Error Establishing a Database Connection");
+            throw new RuntimeException("Error Establishing a Database Connection");
         }
 
         return entity;
@@ -67,22 +63,6 @@ public class AccountCreateServiceImpl implements AccountCreateService {
             conn.rollback();
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-    }
-
-    public static void printSQLException(SQLException ex) {
-        for (Throwable e : ex) {
-            if (e instanceof SQLException) {
-                logger.error("SQLState: " + ((SQLException) e).getSQLState());
-                logger.error("Error Code: " + ((SQLException) e).getErrorCode());
-                logger.error("Message: " + e.getMessage());
-
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    logger.error("Cause: " + t);
-                    t = t.getCause();
-                }
-            }
         }
     }
 }

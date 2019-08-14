@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 
 public class CommonsConfigurationsService {
-    private static final Logger logger = LogManager.getLogger(Application.class);
+    private static final Logger logger = LogManager.getLogger(CommonsConfigurationsService.class);
     private static final String FILE_NAME = "application.properties";
 
     public static Configuration configuration;

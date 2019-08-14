@@ -41,10 +41,6 @@ a pre-installed container/server).
    
    - Flyway
  
-#### Dependency Injection 
-
-   - Google Guice  
-
 #### System logs
 
    - Log4j2
@@ -63,10 +59,6 @@ a pre-installed container/server).
 
    - Travis CI
    
-#### Reduce the amount of Java code
-
-   - Lombok
-      
 # Instructions
 
 ### Build

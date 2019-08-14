@@ -8,14 +8,6 @@ import static com.jullierme.revolut.config.commonsConfigurations.CommonsConfigur
 
 public class DatabaseConnectionServiceImpl implements DatabaseConnectionService {
 
-    static {
-        try {
-            Class.forName(configuration.getString("datasource.driverClassName"));
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Could not load the h2 driver", e);
-        }
-    }
-
     @Override
     public Connection getConnection() throws SQLException {
         final String url = configuration.getString("datasource.url");

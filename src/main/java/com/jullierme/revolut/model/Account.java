@@ -9,9 +9,6 @@ public class Account {
     private String sortCode;
     private BigDecimal balance;
 
-    public Account() {
-    }
-
     public Account(Long id,
                    String name,
                    String accountNumber,

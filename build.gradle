@@ -63,8 +63,6 @@ dependencies {
 
     compile "org.flywaydb:flyway-core:${flywayVersion}"
 
-    compile "com.google.inject:guice:${guiceVersion}"
-
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testCompile "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 

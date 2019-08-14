@@ -12,7 +12,7 @@ public class DatabaseConnectionServiceImpl implements DatabaseConnectionService 
         try {
             Class.forName(configuration.getString("datasource.driverClassName"));
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Could not load h2 driver", e);
+            throw new RuntimeException("Could not load the h2 driver", e);
         }
     }
 

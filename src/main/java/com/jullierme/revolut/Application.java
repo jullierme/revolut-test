@@ -1,9 +1,8 @@
 package com.jullierme.revolut;
 
-import com.jullierme.revolut.config.flyway.FlywayDatabaseMigrationService;
-import com.jullierme.revolut.config.guice.GuiceService;
-import com.jullierme.revolut.config.jetty.JettyService;
 import com.jullierme.revolut.config.commonsConfigurations.CommonsConfigurationsService;
+import com.jullierme.revolut.config.flyway.FlywayDatabaseMigrationService;
+import com.jullierme.revolut.config.jetty.JettyService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,8 +13,6 @@ public class Application {
         logger.info("Jullierme, Revolut Needs You!");
 
         CommonsConfigurationsService.load();
-
-        GuiceService.creactInjectors();
 
         FlywayDatabaseMigrationService.createDatabase();
 

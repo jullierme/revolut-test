@@ -1,8 +1,5 @@
 package com.jullierme.revolut.business.account;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-import com.jullierme.revolut.config.flyway.FlywayDatabaseMigrationService;
 import com.jullierme.revolut.database.DatabaseConnectionService;
 import com.jullierme.revolut.exceptions.BusinessException;
 import com.jullierme.revolut.model.Account;
@@ -15,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-@Singleton
 public class AccountCreateServiceImpl implements AccountCreateService {
     private static final Logger logger = LogManager.getLogger(AccountCreateServiceImpl.class);
 
@@ -24,7 +20,6 @@ public class AccountCreateServiceImpl implements AccountCreateService {
 
     private DatabaseConnectionService databaseConnectionService;
 
-    @Inject
     public AccountCreateServiceImpl(DatabaseConnectionService databaseConnectionService) {
         this.databaseConnectionService = databaseConnectionService;
     }

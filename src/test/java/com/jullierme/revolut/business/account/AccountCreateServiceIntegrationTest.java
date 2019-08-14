@@ -43,7 +43,5 @@ public class AccountCreateServiceIntegrationTest {
 
         assertNotNull(account);
         assertNotNull(account.getId());
-
-        System.out.println(account.getId());
     }
 }

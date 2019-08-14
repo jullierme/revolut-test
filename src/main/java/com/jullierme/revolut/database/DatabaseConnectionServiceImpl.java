@@ -22,7 +22,7 @@ public class DatabaseConnectionServiceImpl implements DatabaseConnectionService 
         final String username = configuration.getString("datasource.username");
 
         final Connection conn = DriverManager.getConnection(url, username, "");
-        conn.setAutoCommit(true);
+        conn.setAutoCommit(false);
 
         return conn;
     }

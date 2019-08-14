@@ -58,13 +58,20 @@ dependencies {
     testCompile "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
 }
 
+jar {
+    enabled = true
+    manifest {
+        attributes "Implementation-Title": "Revolut Test - Jullierme Barros",
+                "Implementation-Version": version
+    }
+}
+
 test {
     useJUnitPlatform()
 }
 
 jacoco {
     toolVersion = "0.8.4"
-    reportsDir = file("$buildDir/coverage")
 }
 
 jacocoTestReport {
@@ -74,3 +81,5 @@ jacocoTestReport {
         html.destination file("${buildDir}/coverage/jacocoHtml")
     }
 }
+
+test.finalizedBy jacocoTestReport

@@ -41,10 +41,6 @@ a pre-installed container/server).
    
    - Flyway
  
-#### System logs
-
-   - Log4j2
-    
 #### Load application properties file
 
    - Commons Configuration2

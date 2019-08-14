@@ -13,6 +13,7 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DatabaseIntegrationTest
 public class AccountUpdateServiceIntegrationTest {
@@ -61,5 +62,35 @@ public class AccountUpdateServiceIntegrationTest {
 
         assertNotNull(account);
         assertEquals("Lorem Ipsum", account.getName());
+    }
+
+    @Test
+    void givenANewAccount_thenUpdateWithInvalidId_shouldSucceed() throws SQLException {
+        final Account account = accountCreateService.create(getDefaultAccout("7889188"));
+
+        assertNotNull(account);
+        assertNotNull(account.getId());
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            accountUpdateService.update(null, account);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            accountUpdateService.update(1L, null);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            accountUpdateService.update(account.getId() + 1, account);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            account.setId(-1L);
+            accountUpdateService.update(1L, account);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            account.setId(null);
+            accountUpdateService.update(1L, account);
+        });
     }
 }

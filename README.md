@@ -54,7 +54,11 @@ a pre-installed container/server).
 #### Hosted continuous integration service
 
    - Travis CI
-   
+
+#### Code coverage library
+
+   - JaCoCo
+      
 # Instructions
 
 ### Build

@@ -36,13 +36,11 @@ public class AccountCreateServiceImpl implements AccountCreateService {
 
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
-            if (generatedKeys.next()) {
-                conn.commit();
+            generatedKeys.next();
 
-                return accountFindByIdService.find(generatedKeys.getLong(1));
-            } else {
-                throw new RuntimeException("Error to retrieve the id");
-            }
+            conn.commit();
+
+            return accountFindByIdService.find(generatedKeys.getLong(1));
         }
     }
 }

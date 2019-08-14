@@ -32,9 +32,6 @@ repositories {
 }
 
 dependencies {
-    compile "org.apache.logging.log4j:log4j-api:${log4j2Version}"
-    compile "org.apache.logging.log4j:log4j-core:${log4j2Version}"
-
     compile "org.eclipse.jetty:jetty-server:${jettyVersion}"
     compile "org.eclipse.jetty:jetty-servlet:${jettyVersion}"
 

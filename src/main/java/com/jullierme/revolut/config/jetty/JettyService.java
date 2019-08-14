@@ -1,7 +1,5 @@
 package com.jullierme.revolut.config.jetty;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -11,10 +9,8 @@ import static com.jullierme.revolut.config.commonsConfigurations.CommonsConfigur
 import static org.eclipse.jetty.servlet.ServletContextHandler.NO_SESSIONS;
 
 public class JettyService {
-    private static final Logger logger = LogManager.getLogger(JettyService.class);
 
     public static void start() {
-        logger.info("Starting Jetty Server...");
 
         final int port = configuration.getInt("app.server.port");
         final String contextPath = configuration.getString("app.server.context_path");
@@ -37,7 +33,6 @@ public class JettyService {
             server.start();
             server.join();
         } catch (Exception ex) {
-            logger.error("Error occurred while starting Jetty", ex);
             System.exit(1);
         } finally {
             server.destroy();

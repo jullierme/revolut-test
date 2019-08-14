@@ -5,9 +5,19 @@ import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 public class AccountCreateServiceFactory {
     private static AccountCreateService instance;
 
-    public static AccountCreateService getInstance() {
+    private DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
+
+    public AccountCreateServiceFactory() {
+        createServices();
+    }
+
+    private void createServices() {
+        databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
+    }
+
+    public AccountCreateService getInstance() {
         if (instance == null) {
-            instance = new AccountCreateServiceImpl(DatabaseConnectionServiceFactory.getInstance());
+            instance = new AccountCreateServiceImpl(databaseConnectionServiceFactory.getInstance());
         }
 
         return instance;

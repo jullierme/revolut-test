@@ -13,11 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DatabaseIntegrationTest
 public class AccountCreateServiceIntegrationTest {
 
+    private AccountCreateServiceFactory accountCreateServiceFactory;
     private AccountCreateService accountCreateService;
 
     @BeforeEach
     void beforeEach() {
-        accountCreateService = AccountCreateServiceFactory.getInstance();
+        init();
+    }
+
+    void init() {
+        accountCreateServiceFactory = new AccountCreateServiceFactory();
+        accountCreateService = accountCreateServiceFactory.getInstance();
     }
 
     @Test

@@ -67,7 +67,6 @@ dependencies {
 
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testCompile "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-    testCompile "org.junit.platform:junit-platform-runner:${junitRunnerVersion}"
 
     testCompile "org.mockito:mockito-core:${mockitoVersion}"
     testCompile "org.mockito:mockito-junit-jupiter:${mockitoVersion}"

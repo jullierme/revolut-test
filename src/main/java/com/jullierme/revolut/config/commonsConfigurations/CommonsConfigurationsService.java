@@ -11,6 +11,7 @@ import java.io.File;
 
 public class CommonsConfigurationsService {
     private static final Logger logger = LogManager.getLogger(Application.class);
+    private static final String FILE_NAME = "application.properties";
 
     public static Configuration configuration;
 
@@ -20,9 +21,9 @@ public class CommonsConfigurationsService {
         final Configurations configs = new Configurations();
 
         try {
-            configuration = configs.properties(new File("application.properties"));
+            configuration = configs.properties(new File(FILE_NAME));
         } catch (ConfigurationException cex) {
-            throw new RuntimeException("Error when load application.properties file. Error: " + cex.toString());
+            throw new RuntimeException("Error when load " + FILE_NAME + " file. Error: " + cex.toString());
         }
     }
 }

@@ -31,9 +31,7 @@ public class AccountCreateServiceImpl implements AccountCreateService {
             conn = databaseConnectionService.getConnection();
             stmt = conn.createStatement();
 
-            conn.setAutoCommit(false);
-
-            String sql = "INSERT INTO ACCOUNT (NAME, ACCOUNT_NUMBER, SORT_CODE, BALANCE) VALUES (?, ?, ?, ?)";
+            final String sql = "INSERT INTO ACCOUNT (NAME, ACCOUNT_NUMBER, SORT_CODE, BALANCE) VALUES (?, ?, ?, ?)";
 
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, entity.getName());
@@ -46,24 +44,20 @@ public class AccountCreateServiceImpl implements AccountCreateService {
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
             if (generatedKeys.next()) {
-                conn.commit();
-
-                long id = generatedKeys.getLong(1);
-                entity.setId(id);
-            } else {
-                throw new RuntimeException("Cound not save the account");
+                entity.setId(generatedKeys.getLong(1));
+                return entity;
             }
-
-            ps.close();
-            stmt.close();
-            conn.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException(ex);
         } finally {
+            try {
+                if (ps != null) ps.close();
+            } catch (SQLException ignored) {
+            }
             try {
                 if (stmt != null) stmt.close();
             } catch (SQLException ignored) {
-            } // nothing we can do
+            }
             try {
                 if (conn != null) conn.close();
             } catch (SQLException se) {
@@ -71,6 +65,6 @@ public class AccountCreateServiceImpl implements AccountCreateService {
             }
         }
 
-        return entity;
+        throw new RuntimeException("Could not create the account");
     }
 }

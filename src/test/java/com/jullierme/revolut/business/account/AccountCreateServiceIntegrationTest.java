@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 @DatabaseIntegrationTest
-public class AccountCreateServiceTest {
+public class AccountCreateServiceIntegrationTest {
 
     /*@Mock
     DatabaseConnectionService databaseConnectionService;*/

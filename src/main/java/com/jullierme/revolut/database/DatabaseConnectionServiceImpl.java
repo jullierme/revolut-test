@@ -21,6 +21,9 @@ public class DatabaseConnectionServiceImpl implements DatabaseConnectionService 
         final String url = configuration.getString("datasource.url");
         final String username = configuration.getString("datasource.username");
 
-        return DriverManager.getConnection(url, username, "");
+        final Connection conn = DriverManager.getConnection(url, username, "");
+        conn.setAutoCommit(true);
+
+        return conn;
     }
 }

@@ -63,6 +63,10 @@ a pre-installed container/server).
 
    - Travis CI
    
+#### Reduce the amount of Java code
+
+   - Lombok
+      
 # Instructions
 
 ### Build

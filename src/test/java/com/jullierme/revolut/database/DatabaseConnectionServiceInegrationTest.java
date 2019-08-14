@@ -1,8 +1,9 @@
-package revolut.database;
+package com.jullierme.revolut.database;
 
+import com.google.inject.Inject;
 import com.jullierme.revolut.config.commonsConfigurations.CommonsConfigurationsService;
-import com.jullierme.revolut.database.DatabaseConnectionService;
-import com.jullierme.revolut.database.DatabaseConnectionServiceImpl;
+import com.jullierme.revolut.config.guice.GuiceService;
+import com.jullierme.revolut.config.integration.extension.commonsConfigurations.BasicConfigurationIntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,15 +12,11 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+@BasicConfigurationIntegrationTest
 public class DatabaseConnectionServiceInegrationTest {
-
     private DatabaseConnectionService service;
-    private Connection connection;
 
-    @BeforeAll
-    static void beforeAll() {
-        CommonsConfigurationsService.load();
-    }
+    private Connection connection;
 
     @BeforeEach
     void beforeEach() throws SQLException {
@@ -28,7 +25,7 @@ public class DatabaseConnectionServiceInegrationTest {
     }
 
     private void instantiateServices() {
-        service = new DatabaseConnectionServiceImpl();
+        service = GuiceService.injector.getInstance(DatabaseConnectionService.class);
     }
 
     private void closeConnection() throws SQLException {

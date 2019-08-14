@@ -13,11 +13,18 @@ targetCompatibility = 1.8
 
 mainClassName = 'com.jullierme.revolut.Application'
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 ext {
     log4j2Version = '2.12.1'
     jettyVersion = '9.4.19.v20190610'
     jerseyVersion = '2.29'
     junitVersion = '5.5.1'
+    junitRunnerVersion = '1.5.1'
     jacksonDatabindVersion = '2.10.0.pr1'
     mockitoVersion = '3.0.0'
     h2Version = '1.4.199'
@@ -25,6 +32,7 @@ ext {
     commonsBeanutilsVersion = '1.9.3'
     flywayVersion = '6.0.0-beta2'
     guiceVersion = '4.2.2'
+    lombokVersion = '1.18.8'
 }
 
 repositories {
@@ -32,6 +40,8 @@ repositories {
 }
 
 dependencies {
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
     compile "org.apache.logging.log4j:log4j-api:${log4j2Version}"
     compile "org.apache.logging.log4j:log4j-core:${log4j2Version}"
 
@@ -57,6 +67,8 @@ dependencies {
 
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testCompile "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testCompile "org.junit.platform:junit-platform-runner:${junitRunnerVersion}"
+
     testCompile "org.mockito:mockito-core:${mockitoVersion}"
     testCompile "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
 }

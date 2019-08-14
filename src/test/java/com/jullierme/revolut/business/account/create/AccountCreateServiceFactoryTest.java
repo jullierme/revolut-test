@@ -1,4 +1,4 @@
-package com.jullierme.revolut.business.account;
+package com.jullierme.revolut.business.account.create;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

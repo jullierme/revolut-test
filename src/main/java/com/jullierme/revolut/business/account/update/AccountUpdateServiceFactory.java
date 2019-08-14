@@ -1,13 +1,13 @@
-package com.jullierme.revolut.business.account;
+package com.jullierme.revolut.business.account.update;
 
 import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 
-public class AccountCreateServiceFactory {
-    private static AccountCreateService instance;
+public class AccountUpdateServiceFactory {
+    private static AccountUpdateService instance;
 
     private DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
 
-    public AccountCreateServiceFactory() {
+    public AccountUpdateServiceFactory() {
         createServices();
     }
 
@@ -15,9 +15,9 @@ public class AccountCreateServiceFactory {
         databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
     }
 
-    public AccountCreateService getInstance() {
+    public AccountUpdateService getInstance() {
         if (instance == null) {
-            instance = new AccountCreateServiceImpl(databaseConnectionServiceFactory.getInstance());
+            instance = new AccountUpdateServiceImpl(databaseConnectionServiceFactory.getInstance());
         }
 
         return instance;

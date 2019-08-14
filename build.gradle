@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
     id 'org.flywaydb.flyway' version '5.2.4'
@@ -59,4 +60,17 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.4"
+    reportsDir = file("$buildDir/coverage")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/coverage/jacocoHtml")
+    }
 }

@@ -55,15 +55,18 @@ a pre-installed container/server).
    - JUnit 5
    - Mockito
 
-#### Code coverage library
+#### Code coverage 
 
    - JaCoCo
   
-#### Library for validation of REST web services
+#### RestFul integration test
  
    - REST Assured
       
-      
+#### A code generator for bean mappings
+
+   - MapStruct 
+         
 # Instructions
 
 ### Test

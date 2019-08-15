@@ -3,8 +3,8 @@ package com.jullierme.revolut.business.account.findById;
 import com.jullierme.revolut.business.account.create.AccountCreateService;
 import com.jullierme.revolut.business.account.create.AccountCreateServiceFactory;
 import com.jullierme.revolut.config.integration.extension.database.DatabaseIntegrationTest;
-import com.jullierme.revolut.model.Account;
-import com.jullierme.revolut.model.AccountBuilder;
+import com.jullierme.revolut.model.account.Account;
+import com.jullierme.revolut.model.account.AccountBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ class AccountFindByIdServiceIntegrationTest {
 
     void init() {
         accountCreateService = new AccountCreateServiceFactory().getInstance();
-        accountFindByIdService = new AccountFindByIdServiceFactory().getFindByIdServiceInstance();
+        accountFindByIdService = new AccountFindByIdServiceFactory().getInstance();
     }
 
     Account getDefaultAccout(String accountNumber) {

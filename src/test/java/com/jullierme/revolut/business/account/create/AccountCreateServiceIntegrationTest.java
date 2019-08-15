@@ -1,8 +1,8 @@
 package com.jullierme.revolut.business.account.create;
 
 import com.jullierme.revolut.config.integration.extension.database.DatabaseIntegrationTest;
-import com.jullierme.revolut.model.Account;
-import com.jullierme.revolut.model.AccountBuilder;
+import com.jullierme.revolut.model.account.Account;
+import com.jullierme.revolut.model.account.AccountBuilder;
 import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -15,14 +15,7 @@ class AccountFindByIdServiceFactoryTest {
 
     @Test
     void whenGetFindByIdService_shouldSucceed() {
-        AccountFindByIdService service = accountFindByIdServiceFactory.getFindByIdServiceInstance();
-
-        assertNotNull(service);
-    }
-
-    @Test
-    void whenGetFindByIdRestResponseService_shouldSucceed() {
-        AccountFindByIdRestResponseService service = accountFindByIdServiceFactory.getFindByIdRestResponseInstance();
+        AccountFindByIdService service = accountFindByIdServiceFactory.getInstance();
 
         assertNotNull(service);
     }

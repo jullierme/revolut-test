@@ -1,19 +1,15 @@
 package com.jullierme.revolut.business.account.resource;
 
 import com.jullierme.revolut.config.integration.extension.server.ServerIntegrationTest;
-import io.restassured.RestAssured;
 import org.eclipse.jetty.http.HttpStatus;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 
 @ServerIntegrationTest
-class AccountResourceIntegrationTest {
+class AccountFindByIdResourceIntegrationTest {
 
     @Test
     void givenAnId_whenMakingGetRequestUsingFindById_then200Code() {
@@ -26,8 +22,6 @@ class AccountResourceIntegrationTest {
     void givenAnId_whenMakingGetRequestUsingFindById_thenGetAnAccount() {
         given().when().get("/api/account/1")
                 .then()
-                .log()
-                .body()
                 .body("name", equalTo("Jullierme Barros"))
                 .body("accountNumber",equalTo("18181818"))
                 .body("sortCode",equalTo("969696"))

@@ -1,6 +1,6 @@
 package com.jullierme.revolut.business.account.create;
 
-import com.jullierme.revolut.model.Account;
+import com.jullierme.revolut.model.account.Account;
 
 import java.sql.SQLException;
 

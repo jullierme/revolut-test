@@ -1,25 +1,13 @@
-package com.jullierme.revolut.model;
+package com.jullierme.revolut.model.account;
 
 import java.math.BigDecimal;
 
-public class Account {
+public class AccountDto {
     private Long id;
-    private String name; /*In a real world, should has a person table*/
+    private String name;
     private String accountNumber;
     private String sortCode;
     private BigDecimal balance;
-
-    public Account(Long id,
-                   String name,
-                   String accountNumber,
-                   String sortCode,
-                   BigDecimal balance) {
-        this.id = id;
-        this.name = name;
-        this.accountNumber = accountNumber;
-        this.sortCode = sortCode;
-        this.balance = balance;
-    }
 
     public Long getId() {
         return id;

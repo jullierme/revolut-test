@@ -2,7 +2,7 @@ package com.jullierme.revolut.business.account.create;
 
 import com.jullierme.revolut.business.account.findById.AccountFindByIdService;
 import com.jullierme.revolut.database.DatabaseConnectionService;
-import com.jullierme.revolut.model.Account;
+import com.jullierme.revolut.model.account.Account;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +16,7 @@ public class AccountCreateServiceImpl implements AccountCreateService {
 
     private DatabaseConnectionService databaseConnectionService;
     private AccountFindByIdService accountFindByIdService;
+
 
     public AccountCreateServiceImpl(DatabaseConnectionService databaseConnectionService,
                                     AccountFindByIdService accountFindByIdService) {

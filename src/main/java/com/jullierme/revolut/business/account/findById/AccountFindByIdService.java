@@ -2,8 +2,9 @@ package com.jullierme.revolut.business.account.findById;
 
 import com.jullierme.revolut.model.Account;
 
-import java.sql.SQLException;
+import javax.ws.rs.core.Response;
+import java.util.Optional;
 
 public interface AccountFindByIdService {
-    Account find(Long id) throws SQLException;
+    Optional<Account> find(Long id);
 }

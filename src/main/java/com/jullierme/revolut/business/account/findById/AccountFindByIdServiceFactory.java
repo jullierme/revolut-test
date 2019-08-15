@@ -3,7 +3,8 @@ package com.jullierme.revolut.business.account.findById;
 import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 
 public class AccountFindByIdServiceFactory {
-    private static AccountFindByIdService instance;
+    private static AccountFindByIdService findByIdServiceInstance;
+    private static AccountFindByIdRestResponseService findByIdRestResponseInstance;
 
     private DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
 
@@ -12,14 +13,24 @@ public class AccountFindByIdServiceFactory {
     }
 
     private void createServices() {
-        databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
+        if(findByIdServiceInstance == null || findByIdRestResponseInstance == null) {
+            databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
+        }
     }
 
-    public AccountFindByIdService getInstance() {
-        if (instance == null) {
-            instance = new AccountFindByIdServiceImpl(databaseConnectionServiceFactory.getInstance());
+    public AccountFindByIdService getFindByIdServiceInstance() {
+        if (findByIdServiceInstance == null) {
+            findByIdServiceInstance = new AccountFindByIdServiceImpl(databaseConnectionServiceFactory.getInstance());
         }
 
-        return instance;
+        return findByIdServiceInstance;
+    }
+
+    public AccountFindByIdRestResponseService getFindByIdRestResponseInstance() {
+        if (findByIdRestResponseInstance == null) {
+            findByIdRestResponseInstance = new AccountFindByIdServiceImpl(databaseConnectionServiceFactory.getInstance());
+        }
+
+        return findByIdRestResponseInstance;
     }
 }

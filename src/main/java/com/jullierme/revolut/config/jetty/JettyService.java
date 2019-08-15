@@ -10,13 +10,14 @@ import static org.eclipse.jetty.servlet.ServletContextHandler.NO_SESSIONS;
 
 public class JettyService {
 
-    public static void start() {
+    public static Server start() {
 
         final int port = configuration.getInt("app.server.port");
         final String contextPath = configuration.getString("app.server.context_path");
         final String prefixPath = configuration.getString("app.server.prefix_path");
         final String jettyPackages = configuration.getString("app.server.jetty_packages");
         final String rootPath = configuration.getString("app.server.root_path");
+        final boolean isProduction = configuration.getBoolean("app.production");
 
         final Server server = new Server(port);
 
@@ -30,6 +31,16 @@ public class JettyService {
 
         servletHolder.setInitParameter(jettyPackages, rootPath);
 
+        if(isProduction) {
+            produtionEnvrioriment(server);
+        } else {
+            testEnvrioriment(server);
+        }
+
+        return server;
+    }
+
+    private static void produtionEnvrioriment(final Server server) {
         try {
             server.start();
             server.join();
@@ -37,6 +48,14 @@ public class JettyService {
             System.exit(1);
         } finally {
             server.destroy();
+        }
+    }
+
+    private static void testEnvrioriment(final Server server) {
+        try {
+            server.start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

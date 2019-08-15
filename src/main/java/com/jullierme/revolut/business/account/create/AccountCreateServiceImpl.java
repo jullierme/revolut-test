@@ -40,7 +40,8 @@ public class AccountCreateServiceImpl implements AccountCreateService {
 
             conn.commit();
 
-            return accountFindByIdService.find(generatedKeys.getLong(1));
+            return accountFindByIdService.find(generatedKeys.getLong(1))
+                    .orElseThrow(() -> new SQLException("Internal server error"));
         }
     }
 }

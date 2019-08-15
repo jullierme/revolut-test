@@ -12,7 +12,9 @@ public class AccountUpdateServiceFactory {
     }
 
     private void createServices() {
-        databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
+        if(instance == null) {
+            databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
+        }
     }
 
     public AccountUpdateService getInstance() {

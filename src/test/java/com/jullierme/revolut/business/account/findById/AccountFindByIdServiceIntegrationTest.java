@@ -26,7 +26,7 @@ class AccountFindByIdServiceIntegrationTest {
 
     void init() {
         accountCreateService = new AccountCreateServiceFactory().getInstance();
-        accountFindByIdService = new AccountFindByIdServiceFactory().getInstance();
+        accountFindByIdService = new AccountFindByIdServiceFactory().getFindByIdServiceInstance();
     }
 
     Account getDefaultAccout(String accountNumber) {
@@ -50,10 +50,9 @@ class AccountFindByIdServiceIntegrationTest {
 
         Long id = account.getId();
 
-        account = accountFindByIdService.find(id);
+        account = accountFindByIdService.find(id).orElse(null);
 
         assertNotNull(account);
         assertEquals(id, account.getId());
     }
-
 }

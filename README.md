@@ -46,18 +46,23 @@ a pre-installed container/server).
    - Commons Configuration2
    - Commons Beanutils
 
+#### Hosted continuous integration service
+
+   - Travis CI
+   
 #### Unit test
 
    - JUnit 5
    - Mockito
 
-#### Hosted continuous integration service
-
-   - Travis CI
-
 #### Code coverage library
 
    - JaCoCo
+  
+#### Library for validation of REST web services
+ 
+   - REST Assured
+      
       
 # Instructions
 

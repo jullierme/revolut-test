@@ -14,15 +14,17 @@ public class AccountCreateServiceFactory {
     }
 
     private void createServices() {
-        databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
-        accountFindByIdServiceFactory = new AccountFindByIdServiceFactory();
+        if(instance == null) {
+            databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
+            accountFindByIdServiceFactory = new AccountFindByIdServiceFactory();
+        }
     }
 
     public AccountCreateService getInstance() {
         if (instance == null) {
             instance = new AccountCreateServiceImpl(
                     databaseConnectionServiceFactory.getInstance(),
-                    accountFindByIdServiceFactory.getInstance()
+                    accountFindByIdServiceFactory.getFindByIdServiceInstance()
             );
         }
 

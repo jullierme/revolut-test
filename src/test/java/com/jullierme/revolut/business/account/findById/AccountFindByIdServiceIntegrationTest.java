@@ -15,12 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DatabaseIntegrationTest
-public class AccountFindByIdServiceIntegrationTest {
-
-    private AccountCreateServiceFactory accountCreateServiceFactory;
+class AccountFindByIdServiceIntegrationTest {
     private AccountCreateService accountCreateService;
-
-    private AccountFindByIdServiceFactory accountFindByIdServiceFactory;
     private AccountFindByIdService accountFindByIdService;
 
     @BeforeEach
@@ -29,11 +25,8 @@ public class AccountFindByIdServiceIntegrationTest {
     }
 
     void init() {
-        accountCreateServiceFactory = new AccountCreateServiceFactory();
-        accountCreateService = accountCreateServiceFactory.getInstance();
-
-        accountFindByIdServiceFactory = new AccountFindByIdServiceFactory();
-        accountFindByIdService = accountFindByIdServiceFactory.getInstance();
+        accountCreateService = new AccountCreateServiceFactory().getInstance();
+        accountFindByIdService = new AccountFindByIdServiceFactory().getInstance();
     }
 
     Account getDefaultAccout(String accountNumber) {

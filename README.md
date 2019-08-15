@@ -61,11 +61,15 @@ a pre-installed container/server).
       
 # Instructions
 
+### Test
+
+    $ gradlew test
+    
 ### Build
 
-    $ gradle build
+    $ gradlew build
 
 ### Run
 
-    $ java -jar revolut-1.0-SNAPSHOT-all.jar
+    $ java -jar revolut-1.0-all.jar
     

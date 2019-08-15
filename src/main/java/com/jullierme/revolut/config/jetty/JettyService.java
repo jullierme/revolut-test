@@ -27,6 +27,7 @@ public class JettyService {
 
         final ServletHolder servletHolder = servletContextHandler.addServlet(ServletContainer.class, prefixPath);
         servletHolder.setInitOrder(0);
+
         servletHolder.setInitParameter(jettyPackages, rootPath);
 
         try {

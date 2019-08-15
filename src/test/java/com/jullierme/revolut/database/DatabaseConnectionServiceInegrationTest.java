@@ -9,9 +9,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @BasicConfigurationIntegrationTest
-public class DatabaseConnectionServiceInegrationTest {
+class DatabaseConnectionServiceInegrationTest {
     private DatabaseConnectionService service;
-    private DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
 
     private Connection connection;
 
@@ -22,8 +21,7 @@ public class DatabaseConnectionServiceInegrationTest {
     }
 
     private void instantiateServices() {
-        databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
-        service = databaseConnectionServiceFactory.getInstance();
+        service = new DatabaseConnectionServiceFactory().getInstance();
     }
 
     private void closeConnection() throws SQLException {

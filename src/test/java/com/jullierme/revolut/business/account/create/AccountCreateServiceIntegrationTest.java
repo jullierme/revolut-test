@@ -14,9 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DatabaseIntegrationTest
-public class AccountCreateServiceIntegrationTest {
-
-    private AccountCreateServiceFactory accountCreateServiceFactory;
+class AccountCreateServiceIntegrationTest {
     private AccountCreateService accountCreateService;
 
     @BeforeEach
@@ -25,8 +23,7 @@ public class AccountCreateServiceIntegrationTest {
     }
 
     void init() {
-        accountCreateServiceFactory = new AccountCreateServiceFactory();
-        accountCreateService = accountCreateServiceFactory.getInstance();
+        accountCreateService = new AccountCreateServiceFactory().getInstance();
     }
 
     Account getDefaultAccout(String accountNumber) {

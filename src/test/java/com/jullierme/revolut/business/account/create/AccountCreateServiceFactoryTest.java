@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class AccountCreateServiceFactoryTest {
+class AccountCreateServiceFactoryTest {
     private AccountCreateServiceFactory accountCreateServiceFactory;
 
     @BeforeEach

@@ -16,12 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DatabaseIntegrationTest
-public class AccountUpdateServiceIntegrationTest {
+class AccountUpdateServiceIntegrationTest {
 
-    private AccountUpdateServiceFactory accountUpdateServiceFactory;
     private AccountUpdateService accountUpdateService;
-
-    private AccountCreateServiceFactory accountCreateServiceFactory;
     private AccountCreateService accountCreateService;
 
     @BeforeEach
@@ -30,11 +27,8 @@ public class AccountUpdateServiceIntegrationTest {
     }
 
     void init() {
-        accountUpdateServiceFactory = new AccountUpdateServiceFactory();
-        accountUpdateService = accountUpdateServiceFactory.getInstance();
-
-        accountCreateServiceFactory = new AccountCreateServiceFactory();
-        accountCreateService = accountCreateServiceFactory.getInstance();
+        accountUpdateService = new AccountUpdateServiceFactory().getInstance();
+        accountCreateService = new AccountCreateServiceFactory().getInstance();
     }
 
     Account getDefaultAccout(String accountNumber) {

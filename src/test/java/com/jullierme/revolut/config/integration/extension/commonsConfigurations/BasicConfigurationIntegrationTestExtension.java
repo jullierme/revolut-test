@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 public class BasicConfigurationIntegrationTestExtension implements BeforeAllCallback {
+
     @Override
     public void beforeAll(ExtensionContext context) {
         CommonsConfigurationsService.load();

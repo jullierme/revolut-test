@@ -22,7 +22,7 @@ public class TransactionFindByIdResource {
     }
 
     private void createServices() {
-        findByIdService = new TransactionFindServiceFactory().getInstance();
+        findByIdService = TransactionFindServiceFactory.getInstance().getTransactionFindByIdService();
         transactionMapper = new TransactionMapperImpl();
     }
 

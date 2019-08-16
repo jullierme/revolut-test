@@ -3,22 +3,23 @@ package com.jullierme.revolut.business.account.find;
 import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 
 public class AccountFindServiceFactory {
+    private static AccountFindServiceFactory factoryIntance;
     private static AccountFindByIdService findByIdService;
     private static AccountFindByAccountService findByAccountService;
 
-    private DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
+    public static AccountFindServiceFactory getInstance() {
+        if (factoryIntance == null) {
+            factoryIntance = new AccountFindServiceFactory();
+        }
 
-    public AccountFindServiceFactory() {
-        createServices();
-    }
-
-    private void createServices() {
-        databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
+        return factoryIntance;
     }
 
     public AccountFindByIdService getAccountFindByIdService() {
         if (findByIdService == null) {
-            findByIdService = new AccountFindByIdServiceImpl(databaseConnectionServiceFactory.getInstance());
+            findByIdService = new AccountFindByIdServiceImpl(
+                    DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService()
+            );
         }
 
         return findByIdService;
@@ -26,7 +27,9 @@ public class AccountFindServiceFactory {
 
     public AccountFindByAccountService getAccountFindByAccountService() {
         if (findByAccountService == null) {
-            findByAccountService = new AccountFindByIdServiceImpl(databaseConnectionServiceFactory.getInstance());
+            findByAccountService = new AccountFindByIdServiceImpl(
+                    DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService()
+            );
         }
 
         return findByAccountService;

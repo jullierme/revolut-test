@@ -17,13 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AccountCreateServiceIntegrationTest {
     private AccountCreateService accountCreateService;
 
+
     @BeforeEach
     void beforeEach() {
         init();
     }
 
     void init() {
-        accountCreateService = new AccountCreateServiceFactory().getInstance();
+        accountCreateService = AccountCreateServiceFactory.getInstance().getAccountCreateServiceInstance();
     }
 
     Account getDefaultAccout(String accountNumber) {
@@ -47,7 +48,7 @@ class AccountCreateServiceIntegrationTest {
     }
 
     @Test
-    void givenADuplicateAccount_thenCreate_shouldError() {
+    void givenADuplicateAccount_whenCreate_shouldError() {
         assertThrows(JdbcSQLIntegrityConstraintViolationException.class, () -> {
             Account account = getDefaultAccout("12312553");
 

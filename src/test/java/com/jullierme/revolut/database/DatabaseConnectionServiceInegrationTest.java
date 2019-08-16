@@ -21,7 +21,7 @@ class DatabaseConnectionServiceInegrationTest {
     }
 
     private void instantiateServices() {
-        service = new DatabaseConnectionServiceFactory().getInstance();
+        service = DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService();
     }
 
     private void closeConnection() throws SQLException {

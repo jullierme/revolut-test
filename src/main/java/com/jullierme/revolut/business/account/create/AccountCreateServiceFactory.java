@@ -4,28 +4,25 @@ import com.jullierme.revolut.business.account.find.AccountFindServiceFactory;
 import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 
 public class AccountCreateServiceFactory {
-    private static AccountCreateService instance;
+    private static AccountCreateServiceFactory factoryIntance;
+    private static AccountCreateService accountCreateService;
 
-    private DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
-    private AccountFindServiceFactory accountFindServiceFactory;
+    public static AccountCreateServiceFactory getInstance() {
+        if (factoryIntance == null) {
+            factoryIntance = new AccountCreateServiceFactory();
+        }
 
-    public AccountCreateServiceFactory() {
-        createServices();
+        return factoryIntance;
     }
 
-    private void createServices() {
-        databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
-        accountFindServiceFactory = new AccountFindServiceFactory();
-    }
-
-    public AccountCreateService getInstance() {
-        if (instance == null) {
-            instance = new AccountCreateServiceImpl(
-                    databaseConnectionServiceFactory.getInstance(),
-                    accountFindServiceFactory.getAccountFindByIdService()
+    public AccountCreateService getAccountCreateServiceInstance() {
+        if (accountCreateService == null) {
+            accountCreateService = new AccountCreateServiceImpl(
+                    DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService(),
+                    AccountFindServiceFactory.getInstance().getAccountFindByIdService()
             );
         }
 
-        return instance;
+        return accountCreateService;
     }
 }

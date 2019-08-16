@@ -29,8 +29,8 @@ class TransactionFindByIdServiceIntegrationTest {
     }
 
     void init() {
-        transactionFindByIdService = new TransactionFindServiceFactory().getInstance();
-        transactionCreateService = new TransactionCreateServiceFactory().getInstance();
+        transactionFindByIdService = TransactionFindServiceFactory.getInstance().getTransactionFindByIdService();
+        transactionCreateService = TransactionCreateServiceFactory.getInstance().getTransactionCreateService();
     }
 
     TransactionRequest getDefaultTransactionRequest() {

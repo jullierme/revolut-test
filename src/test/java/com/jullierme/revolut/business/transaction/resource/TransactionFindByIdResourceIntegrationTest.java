@@ -29,7 +29,7 @@ class TransactionFindByIdResourceIntegrationTest {
     }
 
     void init() {
-        transactionCreateService = new TransactionCreateServiceFactory().getInstance();
+        transactionCreateService = TransactionCreateServiceFactory.getInstance().getTransactionCreateService();
     }
 
     TransactionRequest getDefaultTransactionRequest() {

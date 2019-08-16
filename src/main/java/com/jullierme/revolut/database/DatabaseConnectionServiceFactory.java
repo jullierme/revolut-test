@@ -1,13 +1,22 @@
 package com.jullierme.revolut.database;
 
 public class DatabaseConnectionServiceFactory {
-    private static DatabaseConnectionService instance;
+    private static DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
+    private static DatabaseConnectionService databaseConnectionService;
 
-    public DatabaseConnectionService getInstance() {
-        if (instance == null) {
-            instance = new DatabaseConnectionServiceImpl();
+    public static DatabaseConnectionServiceFactory getInstance() {
+        if (databaseConnectionServiceFactory == null) {
+            databaseConnectionServiceFactory = new DatabaseConnectionServiceFactory();
         }
 
-        return instance;
+        return databaseConnectionServiceFactory;
+    }
+
+    public DatabaseConnectionService getDatabaseConnectionService() {
+        if (databaseConnectionService == null) {
+            databaseConnectionService = new DatabaseConnectionServiceImpl();
+        }
+
+        return databaseConnectionService;
     }
 }

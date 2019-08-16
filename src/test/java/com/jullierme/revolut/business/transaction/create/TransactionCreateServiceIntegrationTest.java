@@ -28,8 +28,8 @@ class TransactionCreateServiceIntegrationTest {
     }
 
     void init() {
-        transactionCreateService = new TransactionCreateServiceFactory().getInstance();
-        accountFindByIdService = new AccountFindServiceFactory().getAccountFindByIdService();
+        transactionCreateService = TransactionCreateServiceFactory.getInstance().getTransactionCreateService();
+        accountFindByIdService = AccountFindServiceFactory.getInstance().getAccountFindByIdService();
     }
 
     TransactionRequest getDefaultTransactionRequest() {

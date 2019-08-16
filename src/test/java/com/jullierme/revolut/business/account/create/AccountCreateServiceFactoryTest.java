@@ -1,21 +1,14 @@
 package com.jullierme.revolut.business.account.create;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class AccountCreateServiceFactoryTest {
-    private AccountCreateServiceFactory accountCreateServiceFactory;
-
-    @BeforeEach
-    void init() {
-        accountCreateServiceFactory = new AccountCreateServiceFactory();
-    }
 
     @Test
     void whenGetInstance_shouldSucceed() {
-        AccountCreateService service = accountCreateServiceFactory.getInstance();
+        AccountCreateService service = AccountCreateServiceFactory.getInstance().getAccountCreateServiceInstance();
 
         assertNotNull(service);
     }

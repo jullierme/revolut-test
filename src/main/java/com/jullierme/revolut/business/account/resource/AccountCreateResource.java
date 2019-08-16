@@ -26,17 +26,12 @@ public class AccountCreateResource {
     private AccountMapper accountMapper;
 
     public AccountCreateResource() {
-        createServices();
-    }
-
-    private void createServices() {
-        accountCreateService = new AccountCreateServiceFactory().getInstance();
+        accountCreateService = AccountCreateServiceFactory.getInstance().getAccountCreateServiceInstance();
         accountMapper = new AccountMapperImpl();
     }
 
 
     @POST
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(AccountDto dto) {
         if (dto == null) {
@@ -53,7 +48,7 @@ public class AccountCreateResource {
             return Response.created(uri).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }

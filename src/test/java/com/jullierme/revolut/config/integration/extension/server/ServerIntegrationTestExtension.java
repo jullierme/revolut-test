@@ -25,6 +25,7 @@ public class ServerIntegrationTestExtension implements BeforeAllCallback, AfterA
 
     @Override
     public void afterAll(ExtensionContext context) throws Exception {
-        server.stop();
+        if(server != null)
+            server.stop();
     }
 }

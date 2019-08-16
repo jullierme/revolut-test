@@ -33,11 +33,10 @@ public class TransactionCreateResource {
     }
 
     private void createServices() {
-        transactionCreateService = new TransactionCreateServiceFactory().getInstance();
+        transactionCreateService = TransactionCreateServiceFactory.getInstance().getTransactionCreateService();
     }
 
     @POST
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(TransactionRequest request) {
         if (request == null) {

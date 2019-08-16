@@ -1,6 +1,6 @@
 package com.jullierme.revolut.business.account.create;
 
-import com.jullierme.revolut.business.account.findById.AccountFindByIdService;
+import com.jullierme.revolut.business.account.find.AccountFindByIdService;
 import com.jullierme.revolut.database.DatabaseConnectionService;
 import com.jullierme.revolut.model.account.Account;
 

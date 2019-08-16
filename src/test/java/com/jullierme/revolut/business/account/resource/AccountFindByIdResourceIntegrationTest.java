@@ -25,7 +25,6 @@ class AccountFindByIdResourceIntegrationTest {
                 .body("name", equalTo("Jullierme Barros"))
                 .body("accountNumber",equalTo("18181818"))
                 .body("sortCode",equalTo("969696"))
-                .body("balance", is(1000.00f))
                 .statusCode(HttpStatus.OK_200);
     }
 

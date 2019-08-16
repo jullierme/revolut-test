@@ -1,4 +1,4 @@
-package com.jullierme.revolut.business.account.findById;
+package com.jullierme.revolut.business.account.find;
 
 import com.jullierme.revolut.model.account.Account;
 

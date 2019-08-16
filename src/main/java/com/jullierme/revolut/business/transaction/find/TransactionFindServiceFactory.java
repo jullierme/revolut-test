@@ -1,13 +1,13 @@
-package com.jullierme.revolut.business.account.findById;
+package com.jullierme.revolut.business.transaction.find;
 
 import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 
-public class AccountFindByIdServiceFactory {
-    private static AccountFindByIdService instance;
+public class TransactionFindServiceFactory {
+    private static TransactionFindByIdService instance;
 
     private DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
 
-    public AccountFindByIdServiceFactory() {
+    public TransactionFindServiceFactory() {
         createServices();
     }
 
@@ -17,9 +17,9 @@ public class AccountFindByIdServiceFactory {
         }
     }
 
-    public AccountFindByIdService getInstance() {
+    public TransactionFindByIdService getInstance() {
         if (instance == null) {
-            instance = new AccountFindByIdServiceImpl(databaseConnectionServiceFactory.getInstance());
+            instance = new TransactionFindByIdServiceImpl(databaseConnectionServiceFactory.getInstance());
         }
 
         return instance;

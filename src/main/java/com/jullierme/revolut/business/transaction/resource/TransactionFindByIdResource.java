@@ -1,7 +1,9 @@
-package com.jullierme.revolut.business.account.resource;
+package com.jullierme.revolut.business.transaction.resource;
 
-import com.jullierme.revolut.business.account.find.AccountFindByIdService;
-import com.jullierme.revolut.business.account.find.AccountFindServiceFactory;
+import com.jullierme.revolut.business.transaction.find.TransactionFindByIdService;
+import com.jullierme.revolut.business.transaction.find.TransactionFindServiceFactory;
+import com.jullierme.revolut.model.transaction.TransactionMapper;
+import com.jullierme.revolut.model.transaction.TransactionMapperImpl;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -10,16 +12,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/account")
-public class AccountFindByIdResource {
-    private AccountFindByIdService findByIdService;
+@Path("/transaction")
+public class TransactionFindByIdResource {
+    private TransactionFindByIdService findByIdService;
+    private TransactionMapper transactionMapper;
 
-    public AccountFindByIdResource() {
+    public TransactionFindByIdResource() {
         createServices();
     }
 
     private void createServices() {
-        findByIdService = new AccountFindServiceFactory().getAccountFindByIdService();
+        findByIdService = new TransactionFindServiceFactory().getInstance();
+        transactionMapper = new TransactionMapperImpl();
     }
 
     @GET
@@ -30,7 +34,7 @@ public class AccountFindByIdResource {
             return findByIdService.find(id)
                     .map(entity -> Response
                             .status(Response.Status.OK)
-                            .entity(entity)
+                            .entity(transactionMapper.toTransactionDto(entity))
                             .build())
                     .orElse(Response
                             .status(Response.Status.NOT_FOUND)

@@ -13,14 +13,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 class AccountFindByIdResourceITest {
 
     @Test
-    void givenAnId_whenMakingGetRequestUsingFindById_then200Code() {
-        given().when().get("/api/account/1")
-                .then()
-                .statusCode(HttpStatus.OK_200);
-    }
-
-    @Test
-    void givenAnId_whenMakingGetRequestUsingFindById_thenGetAnAccount() {
+    @DisplayName("Should find account by id")
+    void givenSavedAccount_whenGetRequest_thenShouldResultAccount() {
         given().when().get("/api/account/1")
                 .then()
                 .body("name", equalTo("Jullierme Barros"))
@@ -30,7 +24,8 @@ class AccountFindByIdResourceITest {
     }
 
     @Test
-    void givenAnInvalidId_whenMakingGetRequestUsingFindById_thenGetNotFoundCode() {
+    @DisplayName("Should NOT accept invalid account id when finding")
+    void givenInvalidAccount_whenGetRequest_thenShouldNotFound() {
         given().when().get("/api/account/99999")
                 .then()
                 .statusCode(HttpStatus.NOT_FOUND_404);

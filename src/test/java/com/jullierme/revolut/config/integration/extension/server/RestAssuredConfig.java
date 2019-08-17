@@ -1,8 +1,11 @@
 package com.jullierme.revolut.config.integration.extension.server;
 
 import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
+import io.restassured.path.json.config.JsonPathConfig;
 
 import static com.jullierme.revolut.config.commonsConfigurations.CommonsConfigurationsService.configuration;
+import static io.restassured.config.JsonConfig.jsonConfig;
 
 public class RestAssuredConfig {
 
@@ -10,6 +13,14 @@ public class RestAssuredConfig {
         restAssuredPortConfig();
         restAssuredBasePathConfig();
         restAssuredBaseURIConfig();
+
+        configDefaultParser();
+
+        RestAssured.config = RestAssured.config().jsonConfig(jsonConfig().numberReturnType(JsonPathConfig.NumberReturnType.BIG_DECIMAL));
+    }
+
+    private static void configDefaultParser() {
+        RestAssured.defaultParser = Parser.JSON;
     }
 
     private static void restAssuredBaseURIConfig() {

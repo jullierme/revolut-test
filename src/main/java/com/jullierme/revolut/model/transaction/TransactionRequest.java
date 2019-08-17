@@ -24,32 +24,16 @@ public class TransactionRequest {
         return accountNumberFrom;
     }
 
-    public void setAccountNumberFrom(String accountNumberFrom) {
-        this.accountNumberFrom = accountNumberFrom;
-    }
-
     public String getSortCodeFrom() {
         return sortCodeFrom;
-    }
-
-    public void setSortCodeFrom(String sortCodeFrom) {
-        this.sortCodeFrom = sortCodeFrom;
     }
 
     public String getAccountNumberTo() {
         return accountNumberTo;
     }
 
-    public void setAccountNumberTo(String accountNumberTo) {
-        this.accountNumberTo = accountNumberTo;
-    }
-
     public String getSortCodeTo() {
         return sortCodeTo;
-    }
-
-    public void setSortCodeTo(String sortCodeTo) {
-        this.sortCodeTo = sortCodeTo;
     }
 
     public BigDecimal getAmount() {

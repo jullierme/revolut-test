@@ -12,7 +12,7 @@ class AccountCreateServiceFactoryUTest {
     @DisplayName("Should return a new AccountCreateService instance")
     void givenAccountCreateServiceFactory_whenAccountCreateService_thenShouldReturnNewInstance() {
         //given
-        AccountCreateServiceFactory factory = AccountCreateServiceFactory.getInstance();
+        AccountCreateServiceFactory factory = AccountCreateServiceFactory.instance();
 
         //when
         AccountCreateService service = factory.getAccountCreateService();

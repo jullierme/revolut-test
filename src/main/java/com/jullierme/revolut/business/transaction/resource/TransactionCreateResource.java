@@ -2,15 +2,10 @@ package com.jullierme.revolut.business.transaction.resource;
 
 import com.jullierme.revolut.business.transaction.create.TransactionCreateService;
 import com.jullierme.revolut.business.transaction.create.TransactionCreateServiceFactory;
-import com.jullierme.revolut.model.account.Account;
-import com.jullierme.revolut.model.account.AccountDto;
-import com.jullierme.revolut.model.account.AccountMapper;
-import com.jullierme.revolut.model.account.AccountMapperImpl;
 import com.jullierme.revolut.model.transaction.Transaction;
-import com.jullierme.revolut.model.transaction.TransactionDto;
-import com.jullierme.revolut.model.transaction.TransactionMapper;
 import com.jullierme.revolut.model.transaction.TransactionRequest;
 
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -33,7 +28,7 @@ public class TransactionCreateResource {
     }
 
     private void createServices() {
-        transactionCreateService = TransactionCreateServiceFactory.getInstance().getTransactionCreateService();
+        transactionCreateService = TransactionCreateServiceFactory.instance().getTransactionCreateService();
     }
 
     @POST
@@ -49,7 +44,7 @@ public class TransactionCreateResource {
             URI uri = uriInfo.getAbsolutePathBuilder().path("/" + entity.getId()).build();
 
             return Response.created(uri).build();
-        } catch (SQLException e) {
+        } catch (SQLException | IllegalArgumentException | NotFoundException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         } catch (RuntimeException e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();

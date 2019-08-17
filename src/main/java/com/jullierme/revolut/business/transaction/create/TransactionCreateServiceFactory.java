@@ -8,7 +8,9 @@ public class TransactionCreateServiceFactory {
     private static TransactionCreateServiceFactory factoryInstance;
     private static TransactionCreateService transactionCreateService;
 
-    public static TransactionCreateServiceFactory getInstance() {
+    private TransactionCreateServiceFactory(){}
+
+    public static TransactionCreateServiceFactory instance() {
         if (factoryInstance == null) {
             factoryInstance = new TransactionCreateServiceFactory();
         }
@@ -20,8 +22,8 @@ public class TransactionCreateServiceFactory {
         if (transactionCreateService == null) {
             transactionCreateService = new TransactionCreateServiceImpl(
                     DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService(),
-                    TransactionFindServiceFactory.getInstance().getTransactionFindByIdService(),
-                    AccountFindServiceFactory.getInstance().getAccountFindByAccountService()
+                    TransactionFindServiceFactory.instance().getTransactionFindByIdService(),
+                    AccountFindServiceFactory.instance().getAccountFindByAccountService()
             );
         }
 

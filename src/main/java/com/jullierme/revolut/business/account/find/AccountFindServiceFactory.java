@@ -7,7 +7,9 @@ public class AccountFindServiceFactory {
     private static AccountFindByIdService findByIdService;
     private static AccountFindByAccountService findByAccountService;
 
-    public static AccountFindServiceFactory getInstance() {
+    private AccountFindServiceFactory(){}
+
+    public static AccountFindServiceFactory instance() {
         if (factoryIntance == null) {
             factoryIntance = new AccountFindServiceFactory();
         }

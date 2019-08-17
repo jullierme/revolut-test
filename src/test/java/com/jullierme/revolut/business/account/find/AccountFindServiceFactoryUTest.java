@@ -11,7 +11,7 @@ class AccountFindServiceFactoryUTest {
     @DisplayName("Should return a new AccountFindByAccountService instance")
     void givenAccountFindServiceFactory_whenGetAccountFindByIdService_thenShouldReturnNewInstance() {
         //given
-        AccountFindServiceFactory factory = AccountFindServiceFactory.getInstance();
+        AccountFindServiceFactory factory = AccountFindServiceFactory.instance();
 
         //when
         AccountFindByIdService service = factory.getAccountFindByIdService();
@@ -24,7 +24,7 @@ class AccountFindServiceFactoryUTest {
     @DisplayName("Should return a new AccountFindByAccountService instance")
     void givenAccountFindServiceFactory_whenGetAccountFindByAccountService_thenShouldReturnNewInstance() {
         //given
-        AccountFindServiceFactory factory = AccountFindServiceFactory.getInstance();
+        AccountFindServiceFactory factory = AccountFindServiceFactory.instance();
 
         //when
         AccountFindByAccountService service = factory.getAccountFindByAccountService();

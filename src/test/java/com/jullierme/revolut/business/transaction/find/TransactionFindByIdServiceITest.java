@@ -24,16 +24,45 @@ class TransactionFindByIdServiceITest {
     private TransactionCreateService transactionCreateService;
 
     @BeforeEach
-    void beforeEach() {
-        init();
+    void setup() {
+        transactionFindByIdService = TransactionFindServiceFactory.instance().getTransactionFindByIdService();
+        transactionCreateService = TransactionCreateServiceFactory.instance().getTransactionCreateService();
     }
 
-    void init() {
-        transactionFindByIdService = TransactionFindServiceFactory.getInstance().getTransactionFindByIdService();
-        transactionCreateService = TransactionCreateServiceFactory.getInstance().getTransactionCreateService();
+
+    @Test
+    @DisplayName("Should find transaction by id")
+    void givenExistentTransaction_whenFind_thenShouldFindTransaction() throws SQLException {
+        //given
+        Transaction transactionSaved = transactionCreateService.create(dummyTransaction());
+        assertNotNull(transactionSaved);
+
+        //when
+        Transaction accountFound = transactionFindByIdService
+                .find(transactionSaved.getId())
+                .orElse(null);
+
+        //then
+        assertNotNull(accountFound);
+        assertEquals(transactionSaved.getId(), accountFound.getId());
     }
 
-    TransactionRequest getDefaultTransactionRequest() {
+    @Test
+    @DisplayName("Should NOT accept invalid transaction id when finding")
+    void givenNonexistentTransaction_whenFind_thenShouldNotFound() {
+        //given
+        Long id = 99999999L;
+
+        //when
+        Transaction account = transactionFindByIdService
+                .find(id)
+                .orElse(null);
+
+        //then
+        assertNull(account);
+    }
+    
+    private TransactionRequest dummyTransaction() {
         return TransactionRequestBuilder
                 .builder()
                 .accountNumberFrom("18181818")
@@ -42,37 +71,5 @@ class TransactionFindByIdServiceITest {
                 .sortCodeTo("959595")
                 .amount(new BigDecimal(1))
                 .build();
-    }
-
-    Transaction addNewTransaction() throws SQLException {
-        TransactionRequest request = getDefaultTransactionRequest();
-
-        Transaction transaction = transactionCreateService.create(request);
-
-        assertNotNull(transaction);
-        assertNotNull(transaction.getId());
-
-        return transaction;
-    }
-
-    @Test
-    void givenAnExistentTransaction_thenFindById_shouldSucceed() throws SQLException {
-        Transaction transaction = addNewTransaction();
-
-        Long id = transaction.getId();
-
-        transaction = transactionFindByIdService.find(id).orElse(null);
-
-        assertNotNull(transaction);
-        assertEquals(id, transaction.getId());
-    }
-
-    @Test
-    void givenANonexistentTransaction_thenFindById_shouldNotFound() {
-        Transaction transaction = transactionFindByIdService
-                .find(null)
-                .orElse(null);
-
-        assertNull(transaction);
     }
 }

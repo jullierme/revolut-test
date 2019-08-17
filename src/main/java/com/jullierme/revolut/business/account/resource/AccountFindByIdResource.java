@@ -19,7 +19,7 @@ public class AccountFindByIdResource {
     }
 
     private void createServices() {
-        findByIdService = new AccountFindServiceFactory().getAccountFindByIdService();
+        findByIdService = AccountFindServiceFactory.instance().getAccountFindByIdService();
     }
 
     @GET

@@ -7,7 +7,9 @@ public class AccountCreateServiceFactory {
     private static AccountCreateServiceFactory factoryIntance;
     private static AccountCreateService accountCreateService;
 
-    public static AccountCreateServiceFactory getInstance() {
+    private AccountCreateServiceFactory(){}
+
+    public static AccountCreateServiceFactory instance() {
         if (factoryIntance == null) {
             factoryIntance = new AccountCreateServiceFactory();
         }
@@ -19,7 +21,7 @@ public class AccountCreateServiceFactory {
         if (accountCreateService == null) {
             accountCreateService = new AccountCreateServiceImpl(
                     DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService(),
-                    AccountFindServiceFactory.getInstance().getAccountFindByIdService()
+                    AccountFindServiceFactory.instance().getAccountFindByIdService()
             );
         }
 

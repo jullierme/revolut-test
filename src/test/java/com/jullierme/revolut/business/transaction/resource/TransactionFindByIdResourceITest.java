@@ -15,6 +15,9 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ServerIntegrationTest
@@ -24,14 +27,10 @@ class TransactionFindByIdResourceITest {
 
     @BeforeEach
     void beforeEach() {
-        init();
+        transactionCreateService = TransactionCreateServiceFactory.instance().getTransactionCreateService();
     }
 
-    void init() {
-        transactionCreateService = TransactionCreateServiceFactory.getInstance().getTransactionCreateService();
-    }
-
-    TransactionRequest getDefaultTransactionRequest() {
+    TransactionRequest dummyTransaction() {
         return TransactionRequestBuilder
                 .builder()
                 .accountNumberFrom("18181818")
@@ -43,7 +42,7 @@ class TransactionFindByIdResourceITest {
     }
 
     Transaction addNewTransaction() throws SQLException {
-        TransactionRequest request = getDefaultTransactionRequest();
+        TransactionRequest request = dummyTransaction();
 
         Transaction transaction = transactionCreateService.create(request);
 
@@ -54,15 +53,26 @@ class TransactionFindByIdResourceITest {
     }
 
     @Test
-    void givenAnId_whenMakingGetRequestUsingFindById_then200Code() throws SQLException {
+    @DisplayName("Should find transaction by id")
+    void givenTransaction_whenGetRequestUsingFindById_thenShouldReturnTransaction() throws SQLException {
         Transaction transaction = addNewTransaction();
 
-        given().when().get("/api/transaction/" + transaction.getId())
+        given()
+                .when()
+                    .get("/api/transaction/" + transaction.getId())
                 .then()
-                .statusCode(HttpStatus.OK_200);
+                .log()
+                .body()
+                    .body("id", is(transaction.getId().intValue()))
+                    .body("fromAccountId", equalTo(transaction.getFromAccountId().intValue()))
+                    .body("toAccountId", equalTo(transaction.getToAccountId().intValue()))
+                    .body("amount", is(transaction.getAmount()))
+                    .body("instant", notNullValue())
+                    .statusCode(HttpStatus.OK_200);
     }
 
     @Test
+    @DisplayName("Should NOT accept invalid transaction id when finding")
     void givenAnInvalidId_whenMakingGetRequestUsingFindById_thenGetNotFoundCode() {
         given().when().get("/api/transaction/99999")
                 .then()

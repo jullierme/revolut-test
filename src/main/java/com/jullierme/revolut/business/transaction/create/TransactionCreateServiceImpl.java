@@ -40,6 +40,9 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
     }
 
     private Account getAccount(String accountNumber, String sortCode) {
+        if(accountNumber == null || sortCode == null)
+            throw new IllegalArgumentException();
+
         return accountFindByAccountService.find(
                 accountNumber, sortCode
         ).orElseThrow(() -> new NotFoundException("Account " + accountNumber + " - " + sortCode + " not found"));
@@ -47,6 +50,9 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
 
     @Override
     public Transaction create(TransactionRequest req) throws SQLException {
+        if(req == null || req.getAmount() == null)
+            throw new IllegalArgumentException();
+
         Account accountFrom = getAccount(req.getAccountNumberFrom(), req.getSortCodeFrom());
         Account accountTo = getAccount(req.getAccountNumberTo(), req.getSortCodeTo());
 
@@ -82,7 +88,7 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
                                  final Account accountTo,
                                  final Connection conn,
                                  final String sql,
-                                 final String errorMessage) throws SQLException {
+                                 final String errorMessage) throws SQLException, IllegalStateException {
         try (PreparedStatement psTransaction = conn.prepareStatement(sql)) {
             psTransaction.setBigDecimal(1, req.getAmount());
             psTransaction.setLong(2, accountTo.getId());
@@ -91,7 +97,7 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
             int result = psTransaction.executeUpdate();
 
             if(result == 0) {
-                throw new RuntimeException(errorMessage);
+                throw new IllegalStateException(errorMessage);
             }
         }
     }

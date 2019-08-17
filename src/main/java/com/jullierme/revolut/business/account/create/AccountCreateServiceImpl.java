@@ -28,6 +28,9 @@ public class AccountCreateServiceImpl implements AccountCreateService {
     public Account create(Account entity) throws SQLException {
         try (Connection conn = databaseConnectionService.getConnection();
              PreparedStatement ps = conn.prepareStatement(INSERT_ACCOUNT_SQL, Statement.RETURN_GENERATED_KEYS)) {
+
+
+
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getAccountNumber());
             ps.setString(3, entity.getSortCode());

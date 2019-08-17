@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 
+import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -63,17 +64,10 @@ class AccountFindByIdServiceITest {
     }
 
     private Account dummyAccount() {
-        String name = "JSB";
-        String accountNumber = "14267674";
-        String sortCode = "197364";
-        BigDecimal balance = new BigDecimal(123321.45).setScale(2, RoundingMode.DOWN);
-
         return AccountBuilder
                 .builder()
-                .name(name)
-                .accountNumber(accountNumber)
-                .sortCode(sortCode)
-                .balance(balance)
+                .name("JSB ASDF")
+                .balance(TEN)
                 .build();
 
     }

@@ -6,8 +6,7 @@ import java.util.Objects;
 public class Account {
     private Long id;
     private String name; /*In a real world, should has a person table*/
-    private String accountNumber;
-    private String sortCode;
+    private Integer accountNumber;
     private BigDecimal balance;
 
     public Account() {
@@ -15,13 +14,11 @@ public class Account {
 
     public Account(Long id,
                    String name,
-                   String accountNumber,
-                   String sortCode,
+                   Integer accountNumber,
                    BigDecimal balance) {
         this.id = id;
         this.name = name;
         this.accountNumber = accountNumber;
-        this.sortCode = sortCode;
         this.balance = balance;
     }
 
@@ -41,20 +38,12 @@ public class Account {
         this.name = name;
     }
 
-    public String getAccountNumber() {
+    public Integer getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(Integer accountNumber) {
         this.accountNumber = accountNumber;
-    }
-
-    public String getSortCode() {
-        return sortCode;
-    }
-
-    public void setSortCode(String sortCode) {
-        this.sortCode = sortCode;
     }
 
     public BigDecimal getBalance() {
@@ -73,13 +62,12 @@ public class Account {
         return Objects.equals(id, account.id) &&
                 Objects.equals(name, account.name) &&
                 Objects.equals(accountNumber, account.accountNumber) &&
-                Objects.equals(sortCode, account.sortCode) &&
                 Objects.equals(balance, account.balance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, accountNumber, sortCode, balance);
+        return Objects.hash(id, name, accountNumber, balance);
     }
 
     @Override
@@ -88,7 +76,6 @@ public class Account {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
-                ", sortCode='" + sortCode + '\'' +
                 ", balance=" + balance +
                 '}';
     }

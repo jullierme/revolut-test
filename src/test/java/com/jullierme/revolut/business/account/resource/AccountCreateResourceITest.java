@@ -34,10 +34,8 @@ class AccountCreateResourceITest {
     Account getDefaultAccout() {
         return AccountBuilder
                 .builder()
-                .accountNumber("12343132")
-                .sortCode("568956")
                 .name("Jullierme Silva Barros")
-                .balance(new BigDecimal(10000))
+                .balance(TEN)
                 .build();
     }
 
@@ -65,18 +63,16 @@ class AccountCreateResourceITest {
                 .get(location)
                 .then()
                 .body("name", equalTo(account.getName()))
-                .body("accountNumber", equalTo(account.getAccountNumber()))
-                .body("sortCode", equalTo(account.getSortCode()))
+                .body("accountNumber", notNullValue())
                 //.body("balance", is(equalTo(account.getBalance())))
                 .body("id", notNullValue())
                 .statusCode(HttpStatus.OK_200);
     }
 
-    @Test
+ /*   @Test
     @DisplayName("Should NOT duplicate an account ")
     void givenAccount_whenMakingPostRequestTwoTimes_thenBadRequest() {
         Account account = getDefaultAccout();
-        account.setAccountNumber("11122233");
 
         given()
                 .contentType(ContentType.JSON)
@@ -94,22 +90,18 @@ class AccountCreateResourceITest {
                 .post("/api/account")
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST_400);
-    }
+    }*/
 
     @ParameterizedTest
     @MethodSource("invalidParametersToCreateAccount")
     @DisplayName("Should NOT accept invalid parameters when creating")
     void givenInvalidParameters_whenTransferFrom_thenShouldThrowException(
             String name,
-            String accountNumber,
-            String sortCode,
             BigDecimal balance) {
 
         Account account = AccountBuilder
                 .builder()
                 .name(name)
-                .accountNumber(accountNumber)
-                .sortCode(sortCode)
                 .balance(balance)
                 .build();
         given()
@@ -124,10 +116,8 @@ class AccountCreateResourceITest {
 
     private static Stream<Arguments> invalidParametersToCreateAccount() {
         return Stream.of(
-                arguments("JSB Name", "14725697", "147256", null),
-                arguments("JSB Name", "14725697", null, TEN),
-                arguments("JSB Name", null, "147256", TEN),
-                arguments(null, "969696", "147256", TEN)
+                arguments("JSB Name", null),
+                arguments(null, TEN)
         );
     }
 }

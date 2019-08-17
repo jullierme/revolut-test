@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
+import static java.math.BigDecimal.ONE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -65,11 +66,9 @@ class TransactionFindByIdServiceITest {
     private TransactionRequest dummyTransaction() {
         return TransactionRequestBuilder
                 .builder()
-                .accountNumberFrom("18181818")
-                .sortCodeFrom("969696")
-                .accountNumberTo("17171717")
-                .sortCodeTo("959595")
-                .amount(new BigDecimal(1))
+                .accountNumberFrom(18181818)
+                .accountNumberTo(17171717)
+                .amount(ONE)
                 .build();
     }
 }

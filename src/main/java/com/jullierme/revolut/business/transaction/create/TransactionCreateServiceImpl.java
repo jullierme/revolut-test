@@ -39,13 +39,12 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
         this.accountFindByAccountService = accountFindByAccountService;
     }
 
-    private Account getAccount(String accountNumber, String sortCode) {
-        if(accountNumber == null || sortCode == null)
+    private Account getAccount(Integer accountNumber) {
+        if(accountNumber == null)
             throw new IllegalArgumentException();
 
-        return accountFindByAccountService.find(
-                accountNumber, sortCode
-        ).orElseThrow(() -> new NotFoundException("Account " + accountNumber + " - " + sortCode + " not found"));
+        return accountFindByAccountService.findByAccount(accountNumber)
+                .orElseThrow(() -> new NotFoundException("Account " + accountNumber + " not found"));
     }
 
     @Override
@@ -53,8 +52,8 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
         if(req == null || req.getAmount() == null)
             throw new IllegalArgumentException();
 
-        Account accountFrom = getAccount(req.getAccountNumberFrom(), req.getSortCodeFrom());
-        Account accountTo = getAccount(req.getAccountNumberTo(), req.getSortCodeTo());
+        Account accountFrom = getAccount(req.getAccountNumberFrom());
+        Account accountTo = getAccount(req.getAccountNumberTo());
 
         try (Connection conn = databaseConnectionService.getConnection()) {
             Long transactionId;

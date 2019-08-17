@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 
+import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -34,32 +35,29 @@ class AccountFindByAccountServiceITest {
     void givenExistentAccount_whenFind_thenShouldFindAccount() throws SQLException {
         //given
         Account account = dummyAccount();
-        String accountNumber = account.getAccountNumber();
-        String sortCode = account.getSortCode();
-
-        accountCreateService.create(account);
+        account = accountCreateService.create(account);
+        assertNotNull(account);
+        Integer accountNumber = account.getAccountNumber();
 
         //when
         Account accountFound = accountFindByAccountService
-                .find(accountNumber, sortCode)
+                .findByAccount(accountNumber)
                 .orElse(null);
 
         //then
         assertNotNull(accountFound);
         assertEquals(accountNumber, accountFound.getAccountNumber());
-        assertEquals(sortCode, accountFound.getSortCode());
     }
 
     @Test
     @DisplayName("Should NOT find Account with invalid account")
     void givenNonexistentAccount_whenFind_thenShouldNotFound() {
         //given
-        String accountNumber = "0000000";
-        String sortCode = "969696";
+        Integer accountNumber = 0;
 
         //when
         Account account = accountFindByAccountService
-                .find(accountNumber, sortCode)
+                .findByAccount(accountNumber)
                 .orElse(null);
 
         //then
@@ -67,17 +65,10 @@ class AccountFindByAccountServiceITest {
     }
 
     private Account dummyAccount() {
-        String name = "JSB";
-        String accountNumber = "11229988";
-        String sortCode = "197364";
-        BigDecimal balance = new BigDecimal(123321.45).setScale(2, RoundingMode.DOWN);
-
         return AccountBuilder
                 .builder()
-                .name(name)
-                .accountNumber(accountNumber)
-                .sortCode(sortCode)
-                .balance(balance)
+                .name("JSB")
+                .balance(TEN)
                 .build();
 
     }

@@ -18,8 +18,7 @@ class AccountFindByIdResourceITest {
         given().when().get("/api/account/1")
                 .then()
                 .body("name", equalTo("Jullierme Barros"))
-                .body("accountNumber",equalTo("18181818"))
-                .body("sortCode",equalTo("969696"))
+                .body("accountNumber",equalTo(18181818))
                 .statusCode(HttpStatus.OK_200);
     }
 

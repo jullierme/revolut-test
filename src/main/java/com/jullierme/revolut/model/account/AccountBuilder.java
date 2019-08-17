@@ -5,8 +5,7 @@ import java.math.BigDecimal;
 public class AccountBuilder {
     private Long id;
     private String name;
-    private String accountNumber;
-    private String sortCode;
+    private Integer accountNumber;
     private BigDecimal balance;
 
     public static AccountBuilder builder() {
@@ -23,13 +22,8 @@ public class AccountBuilder {
         return this;
     }
 
-    public AccountBuilder accountNumber(String accountNumber) {
+    public AccountBuilder accountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
-        return this;
-    }
-
-    public AccountBuilder sortCode(String sortCode) {
-        this.sortCode = sortCode;
         return this;
     }
 
@@ -39,6 +33,6 @@ public class AccountBuilder {
     }
 
     public Account build() {
-        return new Account(id, name, accountNumber, sortCode, balance);
+        return new Account(id, name, accountNumber, balance);
     }
 }

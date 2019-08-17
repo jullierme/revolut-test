@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 
 import static io.restassured.RestAssured.given;
+import static java.math.BigDecimal.ONE;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -33,11 +34,9 @@ class TransactionFindByIdResourceITest {
     TransactionRequest dummyTransaction() {
         return TransactionRequestBuilder
                 .builder()
-                .accountNumberFrom("18181818")
-                .sortCodeFrom("969696")
-                .accountNumberTo("17171717")
-                .sortCodeTo("959595")
-                .amount(new BigDecimal(1))
+                .accountNumberFrom(18181818)
+                .accountNumberTo(17171717)
+                .amount(ONE)
                 .build();
     }
 
@@ -59,16 +58,16 @@ class TransactionFindByIdResourceITest {
 
         given()
                 .when()
-                    .get("/api/transaction/" + transaction.getId())
+                .get("/api/transaction/" + transaction.getId())
                 .then()
                 .log()
                 .body()
-                    .body("id", is(transaction.getId().intValue()))
-                    .body("fromAccountId", equalTo(transaction.getFromAccountId().intValue()))
-                    .body("toAccountId", equalTo(transaction.getToAccountId().intValue()))
-                    .body("amount", is(transaction.getAmount()))
-                    .body("instant", notNullValue())
-                    .statusCode(HttpStatus.OK_200);
+                .body("id", is(transaction.getId().intValue()))
+                .body("fromAccountId", equalTo(transaction.getFromAccountId().intValue()))
+                .body("toAccountId", equalTo(transaction.getToAccountId().intValue()))
+                .body("amount", is(transaction.getAmount()))
+                .body("instant", notNullValue())
+                .statusCode(HttpStatus.OK_200);
     }
 
     @Test

@@ -56,16 +56,12 @@ class TransactionCreateServiceITest {
         Account accountFrom = AccountBuilder
                 .builder()
                 .name("JSB")
-                .accountNumber("11223344")
-                .sortCode("197364")
                 .balance(initialBalance)
                 .build();
 
         Account accountTo = AccountBuilder
                 .builder()
                 .name("Manu")
-                .accountNumber("22223344")
-                .sortCode("197366")
                 .balance(initialBalance)
                 .build();
 
@@ -79,9 +75,7 @@ class TransactionCreateServiceITest {
         TransactionRequest request = TransactionRequestBuilder
                 .builder()
                 .accountNumberFrom(accountFrom.getAccountNumber())
-                .sortCodeFrom(accountFrom.getSortCode())
                 .accountNumberTo(accountTo.getAccountNumber())
-                .sortCodeTo(accountTo.getSortCode())
                 .amount(amountToTransfer)
                 .build();
 
@@ -112,16 +106,12 @@ class TransactionCreateServiceITest {
         Account accountFrom = AccountBuilder
                 .builder()
                 .name("JSB")
-                .accountNumber("11221144")
-                .sortCode("197322")
                 .balance(initialBalance)
                 .build();
 
         Account accountTo = AccountBuilder
                 .builder()
                 .name("Manu")
-                .accountNumber("21123344")
-                .sortCode("197300")
                 .balance(initialBalance)
                 .build();
 
@@ -135,9 +125,7 @@ class TransactionCreateServiceITest {
         TransactionRequest request = TransactionRequestBuilder
                 .builder()
                 .accountNumberFrom(accountFrom.getAccountNumber())
-                .sortCodeFrom(accountFrom.getSortCode())
                 .accountNumberTo(accountTo.getAccountNumber())
-                .sortCodeTo(accountTo.getSortCode())
                 .amount(amountToTransfer)
                 .build();
 
@@ -153,18 +141,14 @@ class TransactionCreateServiceITest {
     @MethodSource("invalidParametersToTransferFrom")
     @DisplayName("Should NOT accept invalid parameters when transferring")
     void givenInvalidParameters_whenTransferFrom_thenShouldThrowException(
-            String accountNumberFrom,
-            String sortCodeFrom,
-            String accountNumberTo,
-            String sortCodeTo,
+            Integer accountNumberFrom,
+            Integer accountNumberTo,
             BigDecimal amount) {
         //given parameters
         TransactionRequest transactionRequest = TransactionRequestBuilder
                 .builder()
                 .accountNumberFrom(accountNumberFrom)
-                .sortCodeFrom(sortCodeFrom)
                 .accountNumberTo(accountNumberTo)
-                .sortCodeTo(sortCodeTo)
                 .amount(amount)
                 .build();
         //when
@@ -178,11 +162,9 @@ class TransactionCreateServiceITest {
 
     private static Stream<Arguments> invalidParametersToTransferFrom() {
         return Stream.of(
-                arguments("18181818", "969696", "17171717", "959595", null),
-                arguments("18181818", "969696", "17171717", null, TEN),
-                arguments("18181818", "969696", null, "959595", TEN),
-                arguments("18181818", null, "17171717", "959595", TEN),
-                arguments(null, "969696", "17171717", "959595", TEN)
+                arguments(18181818, 17171717, null),
+                arguments(18181818, null, TEN),
+                arguments(null, 17171717, TEN)
         );
     }
 }

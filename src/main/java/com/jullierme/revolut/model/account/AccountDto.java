@@ -5,8 +5,7 @@ import java.math.BigDecimal;
 public class AccountDto {
     private Long id;
     private String name;
-    private String accountNumber;
-    private String sortCode;
+    private Integer accountNumber;
     private BigDecimal balance;
 
     public Long getId() {
@@ -25,20 +24,12 @@ public class AccountDto {
         this.name = name;
     }
 
-    public String getAccountNumber() {
+    public Integer getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(Integer accountNumber) {
         this.accountNumber = accountNumber;
-    }
-
-    public String getSortCode() {
-        return sortCode;
-    }
-
-    public void setSortCode(String sortCode) {
-        this.sortCode = sortCode;
     }
 
     public BigDecimal getBalance() {

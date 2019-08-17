@@ -12,7 +12,7 @@ import java.util.Optional;
 public class AccountFindByIdServiceImpl implements AccountFindByIdService,
         AccountFindByAccountService {
     private static final String FIND_ACCOUNT_BY_ID_SQL = "SELECT * FROM ACCOUNT WHERE ID = ?";
-    private static final String FIND_ACCOUNT_BY_ACCOUNT = "SELECT * FROM ACCOUNT WHERE ACCOUNT_NUMBER = ? and SORT_CODE = ?";
+    private static final String FIND_ACCOUNT_BY_ACCOUNT = "SELECT * FROM ACCOUNT WHERE ACCOUNT_NUMBER = ?";
 
     private DatabaseConnectionService databaseConnectionService;
 
@@ -42,15 +42,14 @@ public class AccountFindByIdServiceImpl implements AccountFindByIdService,
     }
 
     @Override
-    public Optional<Account> find(String accountNumber, String sortCode) {
-        if (accountNumber == null || sortCode == null)
+    public Optional<Account> findByAccount(Integer accountNumber) {
+        if (accountNumber == null)
             return Optional.empty();
 
         try (Connection conn = databaseConnectionService.getConnection();
              PreparedStatement ps = conn.prepareStatement(FIND_ACCOUNT_BY_ACCOUNT)) {
 
-            ps.setString(1, accountNumber);
-            ps.setString(2, sortCode);
+            ps.setInt(1, accountNumber);
 
             Account entity = loadEntity(ps);
 
@@ -75,8 +74,7 @@ public class AccountFindByIdServiceImpl implements AccountFindByIdService,
             entity = new Account(
                     rs.getLong("ID"),
                     rs.getString("NAME"),
-                    rs.getString("ACCOUNT_NUMBER"),
-                    rs.getString("SORT_CODE"),
+                    rs.getInt("ACCOUNT_NUMBER"),
                     rs.getBigDecimal("BALANCE"));
 
         }

@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.util.stream.Stream;
 
 import static io.restassured.RestAssured.given;
+import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -25,11 +26,9 @@ class TransactionCreateResourceITest {
     TransactionRequest dummyTransaction() {
         return TransactionRequestBuilder
                 .builder()
-                .accountNumberFrom("18181818")
-                .sortCodeFrom("969696")
-                .accountNumberTo("17171717")
-                .sortCodeTo("959595")
-                .amount(new BigDecimal(1))
+                .accountNumberFrom(18181818)
+                .accountNumberTo(17171717)
+                .amount(ONE)
                 .build();
     }
 
@@ -65,19 +64,15 @@ class TransactionCreateResourceITest {
     @ParameterizedTest
     @MethodSource("invalidParametersToTransferAmountTransaction")
     @DisplayName("Should invalid parameters amount from one account without balance")
-    void givenANewTransaction_whenMakingPostRequestWithoutFound_thenBadRequest(
-            String accountNumberFrom,
-            String sortCodeFrom,
-            String accountNumberTo,
-            String sortCodeTo,
+    void givenNewTransaction_whenMakingPostRequestWithInvalidParameters_thenBadRequest(
+            Integer accountNumberFrom,
+            Integer accountNumberTo,
             BigDecimal amount
     ) {
         TransactionRequest transactionRequest = TransactionRequestBuilder
                 .builder()
                 .accountNumberFrom(accountNumberFrom)
-                .sortCodeFrom(sortCodeFrom)
                 .accountNumberTo(accountNumberTo)
-                .sortCodeTo(sortCodeTo)
                 .amount(amount)
                 .build();
 
@@ -92,11 +87,9 @@ class TransactionCreateResourceITest {
 
     private static Stream<Arguments> invalidParametersToTransferAmountTransaction() {
         return Stream.of(
-                arguments("18181818", "969696", "17171717", "959595", null),
-                arguments("18181818", "969696", "17171717", null, TEN),
-                arguments("18181818", "969696", null, "959595", TEN),
-                arguments("18181818", null, "17171717", "959595", TEN),
-                arguments(null, "969696", "17171717", "959595", TEN)
+                arguments(18181818, 17171717, null),
+                arguments(18181818, null, TEN),
+                arguments(null, 17171717, TEN)
         );
     }
 }

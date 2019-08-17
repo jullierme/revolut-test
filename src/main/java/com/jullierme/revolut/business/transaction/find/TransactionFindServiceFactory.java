@@ -6,8 +6,6 @@ public class TransactionFindServiceFactory {
     private static TransactionFindByIdService transactionFindByIdService;
     private static TransactionFindServiceFactory factoryService;
 
-    private DatabaseConnectionServiceFactory databaseConnectionServiceFactory;
-
     public TransactionFindByIdService getTransactionFindByIdService() {
         if (transactionFindByIdService == null) {
             transactionFindByIdService = new TransactionFindByIdServiceImpl(

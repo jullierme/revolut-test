@@ -15,7 +15,7 @@ public class AccountCreateServiceFactory {
         return factoryIntance;
     }
 
-    public AccountCreateService getAccountCreateServiceInstance() {
+    public AccountCreateService getAccountCreateService() {
         if (accountCreateService == null) {
             accountCreateService = new AccountCreateServiceImpl(
                     DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService(),

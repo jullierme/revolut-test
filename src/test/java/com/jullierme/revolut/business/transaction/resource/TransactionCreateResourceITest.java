@@ -1,12 +1,10 @@
 package com.jullierme.revolut.business.transaction.resource;
 
 import com.jullierme.revolut.config.integration.extension.server.ServerIntegrationTest;
-import com.jullierme.revolut.model.account.Account;
-import com.jullierme.revolut.model.account.AccountBuilder;
-import com.jullierme.revolut.model.transaction.Transaction;
 import com.jullierme.revolut.model.transaction.TransactionRequest;
 import com.jullierme.revolut.model.transaction.TransactionRequestBuilder;
 import org.eclipse.jetty.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -14,7 +12,8 @@ import java.math.BigDecimal;
 import static io.restassured.RestAssured.given;
 
 @ServerIntegrationTest
-class TransactionCreateResourceIntegrationTest {
+@DisplayName("Test suite of the class: TransactionCreateResource")
+class TransactionCreateResourceITest {
 
     TransactionRequest getDefaultTransaction() {
         return TransactionRequestBuilder

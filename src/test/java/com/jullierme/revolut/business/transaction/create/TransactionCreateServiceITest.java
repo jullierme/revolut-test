@@ -8,6 +8,7 @@ import com.jullierme.revolut.model.transaction.Transaction;
 import com.jullierme.revolut.model.transaction.TransactionRequest;
 import com.jullierme.revolut.model.transaction.TransactionRequestBuilder;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -16,7 +17,8 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DatabaseIntegrationTest
-class TransactionCreateServiceIntegrationTest {
+@DisplayName("Test suite of the class: TransactionCreateService")
+class TransactionCreateServiceITest {
 
     private TransactionCreateService transactionCreateService;
     private AccountFindByIdService accountFindByIdService;

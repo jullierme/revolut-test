@@ -3,13 +3,15 @@ package com.jullierme.revolut.database;
 import com.jullierme.revolut.config.integration.extension.commonsConfigurations.BasicConfigurationIntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 @BasicConfigurationIntegrationTest
-class DatabaseConnectionServiceInegrationTest {
+@DisplayName("Test suite of the class: DatabaseConnectionService")
+class DatabaseConnectionServiceITest {
     private DatabaseConnectionService service;
 
     private Connection connection;

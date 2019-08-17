@@ -2,14 +2,15 @@ package com.jullierme.revolut.business.account.resource;
 
 import com.jullierme.revolut.config.integration.extension.server.ServerIntegrationTest;
 import org.eclipse.jetty.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 
 @ServerIntegrationTest
-class AccountFindByIdResourceIntegrationTest {
+@DisplayName("Test suite of the class: AccountFindByIdResource")
+class AccountFindByIdResourceITest {
 
     @Test
     void givenAnId_whenMakingGetRequestUsingFindById_then200Code() {

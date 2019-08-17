@@ -3,6 +3,7 @@ package com.jullierme.revolut.business.account.find;
 import com.jullierme.revolut.config.integration.extension.database.DatabaseIntegrationTest;
 import com.jullierme.revolut.model.account.Account;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @DatabaseIntegrationTest
-class AccountFindByAccountServiceIntegrationTest {
+@DisplayName("Test suite of the class: AccountFindByAccountService")
+class AccountFindByAccountServiceITest {
     private AccountFindByAccountService accountFindByAccountService;
 
     @BeforeEach

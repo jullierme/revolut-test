@@ -1,26 +1,26 @@
-package com.jullierme.revolut.business.transaction.resource;
+package com.jullierme.revolut.business.transaction.find;
 
 import com.jullierme.revolut.business.transaction.create.TransactionCreateService;
 import com.jullierme.revolut.business.transaction.create.TransactionCreateServiceFactory;
-import com.jullierme.revolut.business.transaction.find.TransactionFindByIdService;
-import com.jullierme.revolut.business.transaction.find.TransactionFindServiceFactory;
-import com.jullierme.revolut.config.integration.extension.server.ServerIntegrationTest;
+import com.jullierme.revolut.config.integration.extension.database.DatabaseIntegrationTest;
 import com.jullierme.revolut.model.transaction.Transaction;
 import com.jullierme.revolut.model.transaction.TransactionRequest;
 import com.jullierme.revolut.model.transaction.TransactionRequestBuilder;
-import org.eclipse.jetty.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-@ServerIntegrationTest
-class TransactionFindByIdResourceIntegrationTest {
+@DatabaseIntegrationTest
+@DisplayName("Test suite of the class: TransactionFindByIdService")
+class TransactionFindByIdServiceITest {
+    private TransactionFindByIdService transactionFindByIdService;
     private TransactionCreateService transactionCreateService;
 
     @BeforeEach
@@ -29,6 +29,7 @@ class TransactionFindByIdResourceIntegrationTest {
     }
 
     void init() {
+        transactionFindByIdService = TransactionFindServiceFactory.getInstance().getTransactionFindByIdService();
         transactionCreateService = TransactionCreateServiceFactory.getInstance().getTransactionCreateService();
     }
 
@@ -55,18 +56,23 @@ class TransactionFindByIdResourceIntegrationTest {
     }
 
     @Test
-    void givenAnId_whenMakingGetRequestUsingFindById_then200Code() throws SQLException {
+    void givenAnExistentTransaction_thenFindById_shouldSucceed() throws SQLException {
         Transaction transaction = addNewTransaction();
 
-        given().when().get("/api/transaction/" + transaction.getId())
-                .then()
-                .statusCode(HttpStatus.OK_200);
+        Long id = transaction.getId();
+
+        transaction = transactionFindByIdService.find(id).orElse(null);
+
+        assertNotNull(transaction);
+        assertEquals(id, transaction.getId());
     }
 
     @Test
-    void givenAnInvalidId_whenMakingGetRequestUsingFindById_thenGetNotFoundCode() {
-        given().when().get("/api/transaction/99999")
-                .then()
-                .statusCode(HttpStatus.NOT_FOUND_404);
+    void givenANonexistentTransaction_thenFindById_shouldNotFound() {
+        Transaction transaction = transactionFindByIdService
+                .find(null)
+                .orElse(null);
+
+        assertNull(transaction);
     }
 }

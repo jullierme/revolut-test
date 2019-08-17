@@ -5,6 +5,7 @@ import com.jullierme.revolut.model.account.Account;
 import com.jullierme.revolut.model.account.AccountBuilder;
 import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -14,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DatabaseIntegrationTest
-class AccountCreateServiceIntegrationTest {
+@DisplayName("Test suite of the class: AccountCreateService")
+class AccountCreateServiceITest {
     private AccountCreateService accountCreateService;
 
 
@@ -24,7 +26,7 @@ class AccountCreateServiceIntegrationTest {
     }
 
     void init() {
-        accountCreateService = AccountCreateServiceFactory.getInstance().getAccountCreateServiceInstance();
+        accountCreateService = AccountCreateServiceFactory.getInstance().getAccountCreateService();
     }
 
     Account getDefaultAccout(String accountNumber) {

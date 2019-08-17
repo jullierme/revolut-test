@@ -3,18 +3,17 @@ package com.jullierme.revolut.business.account.resource;
 import com.jullierme.revolut.config.integration.extension.server.ServerIntegrationTest;
 import com.jullierme.revolut.model.account.Account;
 import com.jullierme.revolut.model.account.AccountBuilder;
-import com.jullierme.revolut.model.account.AccountDto;
 import org.eclipse.jetty.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 
 @ServerIntegrationTest
-class AccountCreateResourceIntegrationTest {
+@DisplayName("Test suite of the class: AccountCreateResource")
+class AccountCreateResourceITest {
 
     Account getDefaultAccout() {
         return AccountBuilder

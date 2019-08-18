@@ -1,6 +1,6 @@
 [![Build Status](https://api.travis-ci.com/jullierme/revolut-test.svg?branch=master)](https://travis-ci.org/jullierme/revolut-test)
 [![Coverage Status](https://coveralls.io/repos/github/jullierme/revolut-test/badge.svg?branch=master)](https://coveralls.io/github/jullierme/revolut-test?branch=master)
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/86843d46863c4620a5f81837fd14e270)](https://www.codacy.com/app/jullierme/revolut-test?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jullierme/revolut-test&amp;utm_campaign=Badge_Grade)
 # Revolut test
 Design and implement a RESTful API (including data model and the backing implementation)  for money transfers between accounts.  
 

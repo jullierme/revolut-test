@@ -6,8 +6,6 @@ plugins {
     id 'org.flywaydb.flyway' version '5.2.4'
 
     id 'com.github.kt3k.coveralls' version '2.8.4'
-
-    id 'org.sonarqube' version '2.7'
 }
 
 group 'com.jullierme'
@@ -19,8 +17,6 @@ targetCompatibility = 1.8
 mainClassName = 'com.jullierme.revolut.Application'
 
 ext {
-    sonarProjectName = project.name
-    sonarProjectKey = project.name
     log4j2Version = '2.12.1'
     jettyVersion = '9.4.19.v20190610'
     jerseyVersion = '2.29'
@@ -82,23 +78,6 @@ jar {
 
 test {
     useJUnitPlatform()
-}
-
-sonarqube {
-    properties {
-        property "sonar.projectKey", sonarProjectKey
-        property "sonar.projectName", sonarProjectName
-        property "sonar.projectVersion", project.version
-        //property "sonar.login", "admin"
-        //property "sonar.password", "admin"
-        //property "sonar.host.url", "http://localhost:9000"
-        // property "sonar.language", "java"
-        property "sonar.sourceEncoding", "UTF-8"
-        //property "sonar.java.coveragePlugin", "jacoco"
-        //property "sonar.jacoco.reportPaths", jacocoDestinationFiles
-        //property "sonar.jacoco.exclusions", jacocoExclusions
-        property "sonar.scm.provider", "git"
-    }
 }
 
 coveralls {

@@ -1,5 +1,5 @@
 [![Build Status](https://api.travis-ci.com/jullierme/revolut-test.svg?branch=master)](https://travis-ci.org/jullierme/revolut-test)
-
+[![Coverage Status](https://coveralls.io/repos/github/jullierme/revolut-test/badge.svg?branch=master)](https://coveralls.io/github/jullierme/revolut-test?branch=master)
 
 # Revolut test
 Design and implement a RESTful API (including data model and the backing implementation)  for money transfers between accounts.  
@@ -44,18 +44,22 @@ a pre-installed container/server).
 #### Load application properties file
 
    - Commons Configuration2
-   - Commons Beanutils
+   - Commons BeanUtils
 
-#### Hosted continuous integration service
-
-   - Travis CI
-   
 #### Unit test
 
    - JUnit 5
    - Mockito
+   
+#### Hosted continuous integration service
 
-#### Code coverage 
+   - Travis CI
+   
+#### Hosted code coverage
+
+   - Coveralls
+    
+#### Local code coverage 
 
    - JaCoCo
   

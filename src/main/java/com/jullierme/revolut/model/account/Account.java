@@ -1,7 +1,6 @@
 package com.jullierme.revolut.model.account;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Account {
     private Long id;

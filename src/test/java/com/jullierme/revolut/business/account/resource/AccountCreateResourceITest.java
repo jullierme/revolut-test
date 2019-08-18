@@ -3,14 +3,11 @@ package com.jullierme.revolut.business.account.resource;
 import com.jullierme.revolut.config.integration.extension.server.ServerIntegrationTest;
 import com.jullierme.revolut.model.account.Account;
 import com.jullierme.revolut.model.account.AccountBuilder;
-import com.jullierme.revolut.model.transaction.TransactionRequest;
-import com.jullierme.revolut.model.transaction.TransactionRequestBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.eclipse.jetty.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -22,9 +19,7 @@ import java.util.stream.Stream;
 import static io.restassured.RestAssured.given;
 import static java.math.BigDecimal.TEN;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 @ServerIntegrationTest

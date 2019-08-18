@@ -20,12 +20,12 @@ import java.sql.SQLException;
 import java.util.stream.IntStream;
 
 import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.TEN;
 import static java.math.BigDecimal.ZERO;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DatabaseIntegrationTest
 @DisplayName("Test suite of the class: AccountCreateResource")
@@ -42,7 +42,7 @@ class TransactionCreateServiceStressTest {
     }
 
     @Test
-    @DisplayName("Should transfer all balance without error")
+    @DisplayName("Should transfer balance without error in parallel")
     void givenTwoAccounts_whenStressPostRequest_thenShouldTransferAlmostAllAmountWithoutError() throws SQLException {
         final BigDecimal initialBalance = new BigDecimal(1000);
         final BigDecimal amountToTransfer = ONE.setScale(2, RoundingMode.DOWN);
@@ -82,7 +82,7 @@ class TransactionCreateServiceStressTest {
     }
 
     @Test
-    @DisplayName("Should NOT transfer from one account without enough balance")
+    @DisplayName("Should NOT transfer from one account without enough balance in parallel")
     void givenTwoAccounts_whenStressPostRequest_thenShouldNotTransferWithoutEnoughBalance() throws SQLException, InterruptedException {
         final BigDecimal initialBalance = new BigDecimal(100000);
         final BigDecimal amountToTransfer = ONE.setScale(2, RoundingMode.DOWN);
@@ -120,8 +120,9 @@ class TransactionCreateServiceStressTest {
         assertEquals(finalBalanceTo, accountTo.getBalance());
         assertEquals(finalBalanceFrom, accountFrom.getBalance());
 
-        assertEquals(finalBalanceTo, accountTo.getBalance());
-        assertEquals(finalBalanceFrom, accountFrom.getBalance());
+        assertTrue(accountTo.getBalance().compareTo(ZERO) >= 0);
+        assertTrue(accountFrom.getBalance().compareTo(ZERO) >= 0);
+
     }
 
     private TransactionRequest dummyTransactionRequest(BigDecimal initialBalance, BigDecimal amountToTransfer) throws SQLException {

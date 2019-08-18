@@ -4,7 +4,6 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -19,24 +18,17 @@ public class DatabaseConnectionServiceImpl implements DatabaseConnectionService 
         dataSourceConfig();
     }
 
-    static void dataSourceConfig() {
+    private static void dataSourceConfig() {
         PoolProperties p = new PoolProperties();
         p.setUrl(configuration.getString("datasource.url"));
         p.setDriverClassName(configuration.getString("datasource.driverClassName"));
         p.setUsername(configuration.getString("datasource.username"));
-        p.setJmxEnabled(true);
-        p.setTestWhileIdle(false);
         p.setTestOnBorrow(true);
         p.setValidationQuery("SELECT 1");
-        p.setTestOnReturn(false);
         p.setValidationInterval(30000);
         p.setTimeBetweenEvictionRunsMillis(30000);
-        p.setMaxActive(100);
-        p.setInitialSize(10);
         p.setMaxWait(10000);
-        p.setRemoveAbandonedTimeout(60);
         p.setMinEvictableIdleTimeMillis(30000);
-        p.setMinIdle(10);
         p.setLogAbandoned(true);
         p.setRemoveAbandoned(true);
         p.setJdbcInterceptors(

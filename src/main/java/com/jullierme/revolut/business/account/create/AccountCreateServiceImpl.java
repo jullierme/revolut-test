@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Random;
 
 public class AccountCreateServiceImpl implements AccountCreateService {
     private static final String INSERT_ACCOUNT_SQL = "INSERT INTO ACCOUNT " +

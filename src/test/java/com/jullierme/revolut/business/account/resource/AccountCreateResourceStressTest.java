@@ -26,7 +26,7 @@ class AccountCreateResourceStressTest {
     }
 
     @Test
-    @DisplayName("Should create an account ")
+    @DisplayName("Should create accounts in parallel ")
     void givenAccount_whenPostRequest_thenShouldCreateAccount() {
         Account account = dummyAccout();
 

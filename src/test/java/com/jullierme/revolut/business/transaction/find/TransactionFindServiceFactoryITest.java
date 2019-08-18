@@ -1,12 +1,14 @@
 package com.jullierme.revolut.business.transaction.find;
 
+import com.jullierme.revolut.config.integration.extension.database.DatabaseIntegrationTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@DatabaseIntegrationTest
 @DisplayName("Test suite of the class: TransactionFindServiceFactory")
-class TransactionFindServiceFactoryUTest {
+class TransactionFindServiceFactoryITest {
 
     @Test
     @DisplayName("Should return a new TransactionFindByIdService instance")

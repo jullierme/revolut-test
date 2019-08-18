@@ -31,7 +31,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 @DisplayName("Test suite of the class: AccountCreateResource")
 class AccountCreateResourceITest {
 
-    Account getDefaultAccout() {
+    Account dummyAccout() {
         return AccountBuilder
                 .builder()
                 .name("Jullierme Silva Barros")
@@ -42,7 +42,7 @@ class AccountCreateResourceITest {
     @Test
     @DisplayName("Should create an account ")
     void givenAccount_whenPostRequest_thenShouldCreateAccount() {
-        Account account = getDefaultAccout();
+        Account account = dummyAccout();
 
         Response response = given()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -69,29 +69,6 @@ class AccountCreateResourceITest {
                 .statusCode(HttpStatus.OK_200);
     }
 
- /*   @Test
-    @DisplayName("Should NOT duplicate an account ")
-    void givenAccount_whenMakingPostRequestTwoTimes_thenBadRequest() {
-        Account account = getDefaultAccout();
-
-        given()
-                .contentType(ContentType.JSON)
-                .body(account)
-                .when()
-                .post("/api/account")
-                .then()
-                .statusCode(HttpStatus.CREATED_201);
-
-
-        given()
-                .contentType(ContentType.JSON)
-                .body(account)
-                .when()
-                .post("/api/account")
-                .then()
-                .statusCode(HttpStatus.BAD_REQUEST_400);
-    }*/
-
     @ParameterizedTest
     @MethodSource("invalidParametersToCreateAccount")
     @DisplayName("Should NOT accept invalid parameters when creating")
@@ -112,7 +89,6 @@ class AccountCreateResourceITest {
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST_400);
     }
-
 
     private static Stream<Arguments> invalidParametersToCreateAccount() {
         return Stream.of(

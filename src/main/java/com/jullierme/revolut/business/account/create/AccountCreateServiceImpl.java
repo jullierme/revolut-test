@@ -22,7 +22,7 @@ public class AccountCreateServiceImpl implements AccountCreateService {
     private AccountFindByIdService accountFindByIdService;
 
 
-    public AccountCreateServiceImpl(DatabaseConnectionService databaseConnectionService,
+    AccountCreateServiceImpl(DatabaseConnectionService databaseConnectionService,
                                     AccountFindByIdService accountFindByIdService) {
         this.databaseConnectionService = databaseConnectionService;
         this.accountFindByIdService = accountFindByIdService;

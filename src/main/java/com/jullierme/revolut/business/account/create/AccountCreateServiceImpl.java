@@ -39,9 +39,11 @@ public class AccountCreateServiceImpl implements AccountCreateService {
 
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
-            generatedKeys.next();
-
-            conn.commit();
+            if (generatedKeys.next()) {
+                conn.commit();
+            } else {
+                throw new SQLException("Internal server error");
+            }
 
             return accountFindByIdService.find(generatedKeys.getLong(1))
                     .orElseThrow(() -> new SQLException("Internal server error"));

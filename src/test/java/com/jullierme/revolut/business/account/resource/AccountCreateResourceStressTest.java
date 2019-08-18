@@ -17,7 +17,7 @@ import static java.math.BigDecimal.TEN;
 @DisplayName("Test suite of the class: AccountCreateResource")
 class AccountCreateResourceStressTest {
 
-    Account dummyAccout() {
+    private Account dummyAccout() {
         return AccountBuilder
                 .builder()
                 .name("Jullierme Silva Barros")

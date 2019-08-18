@@ -4,7 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.path.json.config.JsonPathConfig;
 
-import static com.jullierme.revolut.config.commonsConfigurations.CommonsConfigurationsService.configuration;
+import static com.jullierme.revolut.config.commons.configurations.CommonsConfigurationsService.configuration;
 import static io.restassured.config.JsonConfig.jsonConfig;
 
 public class RestAssuredConfig {

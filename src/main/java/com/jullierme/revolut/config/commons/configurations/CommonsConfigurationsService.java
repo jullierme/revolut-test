@@ -1,4 +1,4 @@
-package com.jullierme.revolut.config.commonsConfigurations;
+package com.jullierme.revolut.config.commons.configurations;
 
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
@@ -11,13 +11,9 @@ public class CommonsConfigurationsService {
 
     public static Configuration configuration;
 
-    public static void load() {
+    public static void load() throws ConfigurationException {
         final Configurations configs = new Configurations();
 
-        try {
-            configuration = configs.properties(new File(FILE_NAME));
-        } catch (ConfigurationException cex) {
-            throw new RuntimeException("Error when load " + FILE_NAME + " file. Error: " + cex.toString());
-        }
+        configuration = configs.properties(new File(FILE_NAME));
     }
 }

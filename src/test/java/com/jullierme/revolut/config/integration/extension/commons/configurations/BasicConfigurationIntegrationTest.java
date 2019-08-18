@@ -1,4 +1,4 @@
-package com.jullierme.revolut.config.integration.extension.commonsConfigurations;
+package com.jullierme.revolut.config.integration.extension.commons.configurations;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;

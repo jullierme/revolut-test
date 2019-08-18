@@ -26,7 +26,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 @DisplayName("Test suite of the class: AccountCreateResource")
 class AccountCreateResourceITest {
 
-    Account dummyAccout() {
+    private Account dummyAccout() {
         return AccountBuilder
                 .builder()
                 .name("Jullierme Silva Barros")

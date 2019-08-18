@@ -5,7 +5,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
 
-import static com.jullierme.revolut.config.commonsConfigurations.CommonsConfigurationsService.configuration;
+import static com.jullierme.revolut.config.commons.configurations.CommonsConfigurationsService.configuration;
 import static org.eclipse.jetty.servlet.ServletContextHandler.NO_SESSIONS;
 
 public class JettyService {

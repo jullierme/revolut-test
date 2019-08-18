@@ -116,7 +116,11 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
 
             ResultSet generatedKeys = psTransaction.getGeneratedKeys();
 
-            generatedKeys.next();
+            if (generatedKeys.next()) {
+                conn.commit();
+            } else {
+                throw new SQLException("Internal server error");
+            }
 
             transactionId = generatedKeys.getLong(1);
         }

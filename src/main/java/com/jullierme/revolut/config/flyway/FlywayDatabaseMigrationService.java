@@ -2,7 +2,7 @@ package com.jullierme.revolut.config.flyway;
 
 import org.flywaydb.core.Flyway;
 
-import static com.jullierme.revolut.config.commonsConfigurations.CommonsConfigurationsService.configuration;
+import static com.jullierme.revolut.config.commons.configurations.CommonsConfigurationsService.configuration;
 
 public class FlywayDatabaseMigrationService {
     public static void createDatabase() {

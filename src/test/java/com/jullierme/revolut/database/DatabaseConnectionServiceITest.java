@@ -1,6 +1,6 @@
 package com.jullierme.revolut.database;
 
-import com.jullierme.revolut.config.integration.extension.commonsConfigurations.BasicConfigurationIntegrationTest;
+import com.jullierme.revolut.config.integration.extension.commons.configurations.BasicConfigurationIntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

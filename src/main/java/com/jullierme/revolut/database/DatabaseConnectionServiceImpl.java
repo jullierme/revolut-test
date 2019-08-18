@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import static com.jullierme.revolut.config.commonsConfigurations.CommonsConfigurationsService.configuration;
+import static com.jullierme.revolut.config.commons.configurations.CommonsConfigurationsService.configuration;
 
 public class DatabaseConnectionServiceImpl implements DatabaseConnectionService {
 

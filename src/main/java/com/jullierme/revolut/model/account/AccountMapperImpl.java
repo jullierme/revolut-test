@@ -6,7 +6,7 @@ public class AccountMapperImpl implements AccountMapper {
     @Override
     public Account toAccount(AccountDto account) {
         if (account == null) {
-            return null;
+            throw new IllegalArgumentException();
         }
 
         Account entity = new Account();
@@ -21,7 +21,7 @@ public class AccountMapperImpl implements AccountMapper {
     @Override
     public AccountDto toAccountDto(Account entity) {
         if (entity == null) {
-            return null;
+            throw new IllegalArgumentException();
         }
 
         AccountDto dto = new AccountDto();

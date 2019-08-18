@@ -13,7 +13,7 @@ import java.sql.SQLException;
 class DatabaseConnectionServiceITest {
 
     @Test
-    @DisplayName("Should return a new Database Connection")
+    @DisplayName("Should return a new Database Opened Connection without auto commit")
     void givenDatabaseConnectionFactory_whenGetConnection_thenShouldReturnConnection() throws SQLException {
         //given
         DatabaseConnectionService service = DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService();
@@ -24,5 +24,6 @@ class DatabaseConnectionServiceITest {
         //then
         Assertions.assertNotNull(connection);
         Assertions.assertFalse(connection.isClosed());
+        Assertions.assertFalse(connection.getAutoCommit());
     }
 }

@@ -83,5 +83,82 @@ a pre-installed container/server).
 
 ### Run
 
-    $ java -jar revolut-1.0-all.jar
+    $ java -jar revolut-1.0-SNAPSHOT-all.jar
     
+    
+### Server
+   
+   The Application starts a jetty server on localhost port 8080 with two sample accounts 
+   
+- http://localhost:8080/api/account/18181818
+##### Response:
+```sh
+{
+    "id": 18181818,
+    "name": "Jullierme Barros",
+    "balance": 1000000.00
+} 
+```
+- http://localhost:8080/api/account/17171717
+##### Response:
+```sh
+{
+    "id": 17171717,
+    "name": "Manoela Barros",
+    "balance": 1000000.00
+} 
+```
+
+### Available Services
+
+| HTTP METHOD | PATH | USAGE |
+| -----------| ------ | ------ |
+| POST | /api/account | create a new account
+| GET | /api/account/{accountId} | get account by accountId | 
+| POST | /api/transaction | perform transaction between 2 accounts | 
+| GET | /api/transaction/{transactionId} | get transaction by id | 
+ 
+### Http Status
+- 200 OK
+- 400 Bad Request 
+- 404 Not Found
+- 500 Internal Server Error 
+
+### Sample JSON for Account and Transaction
+#### Account:
+##### Request: 
+```sh
+{  
+   "name":"Jullierme",
+   "balance":100
+} 
+```
+##### Response:
+```sh
+Header:
+"Location":"http://localhost:8080/api/account/18181819"
+```
+
+#### Transaction:
+##### Request:
+```sh
+{  
+   "fromAccountId":18181818,
+   "toAccountId":17171717
+   "amount":10,
+}
+```
+
+##### Response:
+```sh
+{
+    "id": 1,
+    "fromAccountId": 18181818,
+    "toAccountId": 17171717,
+    "amount": 10.00,
+    "instant": {
+        "epochSecond": 1566138853,
+        "nano": 950000000
+    }
+}
+```

@@ -57,6 +57,20 @@ class AccountCreateServiceITest {
         assertEquals(balance, savedAccount.getBalance());
     }
 
+    @Test
+    @DisplayName("Should NOT accept null account when saving")
+    void givenNullEntity_thenCreate_thenShouldThrowException() {
+
+        //given
+        Account account = null;
+
+        //when
+        Executable executable = () -> accountCreateService.create(account);
+
+        //then
+        assertThrows(IllegalArgumentException.class, executable);
+    }
+
     @ParameterizedTest
     @MethodSource("invalidParametersToCreateAccount")
     @DisplayName("Should NOT accept invalid parameters when saving")

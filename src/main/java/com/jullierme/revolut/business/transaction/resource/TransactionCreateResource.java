@@ -34,10 +34,6 @@ public class TransactionCreateResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(TransactionRequest request) {
-        if (request == null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
-
         try {
             Transaction entity = transactionCreateService.create(request);
 

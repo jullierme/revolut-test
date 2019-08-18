@@ -63,6 +63,18 @@ class AccountCreateResourceITest {
                 .statusCode(HttpStatus.OK_200);
     }
 
+    @Test
+    @DisplayName("Should not create an account with empty body")
+    void givenEmptyBody_whenPostRequest_thenBadRequest() {
+        given()
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .when()
+                .post("/api/account")
+                .then()
+                .statusCode(HttpStatus.BAD_REQUEST_400);
+    }
+
     @ParameterizedTest
     @MethodSource("invalidParametersToCreateAccount")
     @DisplayName("Should NOT accept invalid parameters when creating")

@@ -34,10 +34,6 @@ public class AccountCreateResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(AccountDto dto) {
-        if (dto == null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
-
         Account entity = accountMapper.toAccount(dto);
 
         try {
@@ -46,7 +42,7 @@ public class AccountCreateResource {
             URI uri = uriInfo.getAbsolutePathBuilder().path("/" + entity.getId()).build();
 
             return Response.created(uri).build();
-        } catch (SQLException e) {
+        } catch (SQLException | IllegalArgumentException e ) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();

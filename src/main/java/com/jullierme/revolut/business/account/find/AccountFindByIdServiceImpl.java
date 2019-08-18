@@ -40,9 +40,6 @@ public class AccountFindByIdServiceImpl implements AccountFindByIdService{
     }
 
     private Account loadEntity(PreparedStatement ps) throws SQLException {
-        if (ps == null)
-            return null;
-
         ResultSet rs = ps.executeQuery();
 
         Account entity = null;

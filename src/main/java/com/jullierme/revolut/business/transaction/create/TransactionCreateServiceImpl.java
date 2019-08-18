@@ -40,7 +40,7 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
     }
 
     private Account getAccount(Long accountNumber) {
-        if(accountNumber == null)
+        if (accountNumber == null)
             throw new IllegalArgumentException();
 
         return accountFindByIdService.find(accountNumber)
@@ -49,7 +49,8 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
 
     @Override
     public Transaction create(TransactionRequest req) throws SQLException {
-        if(req == null || req.getAmount() == null)
+        if (req == null || req.getAmount() == null ||
+                req.getAccountNumberFrom() == null || req.getAccountNumberTo() == null)
             throw new IllegalArgumentException();
 
         Account accountFrom = getAccount(req.getAccountNumberFrom());
@@ -84,10 +85,10 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
     }
 
     private void changeBalance(final TransactionRequest req,
-                                 final Account accountTo,
-                                 final Connection conn,
-                                 final String sql,
-                                 final String errorMessage) throws SQLException, IllegalStateException {
+                               final Account accountTo,
+                               final Connection conn,
+                               final String sql,
+                               final String errorMessage) throws SQLException, IllegalStateException {
         try (PreparedStatement psTransaction = conn.prepareStatement(sql)) {
             psTransaction.setBigDecimal(1, req.getAmount());
             psTransaction.setLong(2, accountTo.getId());
@@ -95,7 +96,7 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
 
             int result = psTransaction.executeUpdate();
 
-            if(result == 0) {
+            if (result == 0) {
                 throw new IllegalStateException(errorMessage);
             }
         }

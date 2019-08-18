@@ -26,6 +26,9 @@ public class AccountCreateServiceImpl implements AccountCreateService {
 
     @Override
     public Account create(Account entity) throws SQLException {
+        if(entity == null)
+            throw new IllegalArgumentException();
+
         try (Connection conn = databaseConnectionService.getConnection();
              PreparedStatement ps = conn.prepareStatement(INSERT_ACCOUNT_SQL, Statement.RETURN_GENERATED_KEYS)) {
 

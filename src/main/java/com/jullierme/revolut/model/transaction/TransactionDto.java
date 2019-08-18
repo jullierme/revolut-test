@@ -1,14 +1,12 @@
 package com.jullierme.revolut.model.transaction;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 
 public class TransactionDto {
     private Long id;
     private Long fromAccountId;
     private Long toAccountId;
     private BigDecimal amount;
-    private Instant instant;
 
     public Long getId() {
         return id;
@@ -40,13 +38,5 @@ public class TransactionDto {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public Instant getInstant() {
-        return instant;
-    }
-
-    public void setInstant(Instant instant) {
-        this.instant = instant;
     }
 }

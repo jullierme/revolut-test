@@ -18,7 +18,7 @@ import java.time.Instant;
 
 public class TransactionCreateServiceImpl implements TransactionCreateService {
     private static final String INSERT_TRANSACTION_SQL = "INSERT INTO TRANSACTION " +
-            "(FROM_ACCOUNT_ID, TO_ACCOUNT_ID, AMOUNT, INSTANT) VALUES (?, ?, ?, ?)";
+            "(FROM_ACCOUNT_ID, TO_ACCOUNT_ID, AMOUNT) VALUES (?, ?, ?)";
 
     private static final String UPDATE_DEBIT_ACCOUNT_SQL = "UPDATE ACCOUNT SET " +
             "BALANCE = BALANCE - ? WHERE ID = ? AND ( BALANCE - ? ) >= 0";
@@ -113,7 +113,6 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
             psTransaction.setLong(1, accountFrom.getId());
             psTransaction.setLong(2, accountTo.getId());
             psTransaction.setBigDecimal(3, req.getAmount());
-            psTransaction.setTimestamp(4, Timestamp.from(Instant.now()));
 
             psTransaction.executeUpdate();
 

@@ -14,7 +14,6 @@ public class TransactionMapperImpl implements TransactionMapper {
         transactionDto.setFromAccountId(account.getFromAccountId());
         transactionDto.setToAccountId(account.getToAccountId());
         transactionDto.setAmount(account.getAmount());
-        transactionDto.setInstant(account.getInstant());
 
         return transactionDto;
     }

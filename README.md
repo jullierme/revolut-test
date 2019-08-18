@@ -155,11 +155,7 @@ Header:
     "id": 1,
     "fromAccountId": 18181818,
     "toAccountId": 17171717,
-    "amount": 10.00,
-    "instant": {
-        "epochSecond": 1566138853,
-        "nano": 950000000
-    }
+    "amount": 10.00
 }
 ```
 

@@ -58,13 +58,12 @@ class TransactionFindByIdResourceITest {
                 .when()
                 .get("/api/transaction/" + transaction.getId())
                 .then()
-                .log()
-                .body()
                 .body("id", is(transaction.getId().intValue()))
                 //.body("fromAccountId", is(transaction.getFromAccountId().longValue()))
                 //.body("toAccountId", is((transaction.getToAccountId().longValue())))
+                .body("fromAccountId", notNullValue())
+                .body("toAccountId", notNullValue())
                 .body("amount", is(transaction.getAmount()))
-                .body("instant", notNullValue())
                 .statusCode(HttpStatus.OK_200);
     }
 

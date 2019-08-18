@@ -37,8 +37,7 @@ public class TransactionFindByIdServiceImpl implements TransactionFindByIdServic
                         rs.getLong("ID"),
                         rs.getLong("FROM_ACCOUNT_ID"),
                         rs.getLong("TO_ACCOUNT_ID"),
-                        rs.getBigDecimal("AMOUNT"),
-                        rs.getTimestamp("INSTANT").toInstant()
+                        rs.getBigDecimal("AMOUNT")
                 );
 
             }

@@ -40,10 +40,8 @@ public class TransactionCreateResource {
             URI uri = uriInfo.getAbsolutePathBuilder().path("/" + entity.getId()).build();
 
             return Response.created(uri).build();
-        } catch (SQLException | IllegalArgumentException | NotFoundException e) {
+        } catch (SQLException | IllegalArgumentException | IllegalStateException | NotFoundException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
-        } catch (RuntimeException e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

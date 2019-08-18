@@ -30,20 +30,13 @@ public class TransactionFindByIdResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") Long id) {
-        try {
-            return findByIdService.find(id)
-                    .map(entity -> Response
-                            .status(Response.Status.OK)
-                            .entity(transactionMapper.toTransactionDto(entity))
-                            .build())
-                    .orElse(Response
-                            .status(Response.Status.NOT_FOUND)
-                            .build());
-        } catch (Exception e) {
-            return Response
-                    .status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity("There was an internal server error")
-                    .build();
-        }
+        return findByIdService.find(id)
+                .map(entity -> Response
+                        .status(Response.Status.OK)
+                        .entity(transactionMapper.toTransactionDto(entity))
+                        .build())
+                .orElse(Response
+                        .status(Response.Status.NOT_FOUND)
+                        .build());
     }
 }

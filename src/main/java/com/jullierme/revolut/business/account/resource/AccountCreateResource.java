@@ -7,6 +7,7 @@ import com.jullierme.revolut.model.account.AccountDto;
 import com.jullierme.revolut.model.account.AccountMapper;
 import com.jullierme.revolut.model.account.AccountMapperImpl;
 
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -42,10 +43,8 @@ public class AccountCreateResource {
             URI uri = uriInfo.getAbsolutePathBuilder().path("/" + entity.getId()).build();
 
             return Response.created(uri).build();
-        } catch (SQLException | IllegalArgumentException e ) {
+        }  catch (SQLException | IllegalArgumentException | IllegalStateException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

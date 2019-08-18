@@ -35,9 +35,9 @@ public class AccountCreateResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(AccountDto dto) {
-        Account entity = accountMapper.toAccount(dto);
-
         try {
+            Account entity = accountMapper.toAccount(dto);
+
             entity = accountCreateService.create(entity);
 
             URI uri = uriInfo.getAbsolutePathBuilder().path("/" + entity.getId()).build();

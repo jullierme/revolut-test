@@ -8,8 +8,15 @@ jdk: openjdk8
 before_script:
   - chmod a+x gradlew
 
+addons:
+  sonarcloud:
+    organization: "jullierme-github"
+    token:
+      secure: $sonarcloud
+
 script:
   - ./gradlew test
+  - ./gradlew sonarqube
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock

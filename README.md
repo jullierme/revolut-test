@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ae538bc099244e09f57b3630eb83564)](https://app.codacy.com/app/jullierme/revolut-test?utm_source=github.com&utm_medium=referral&utm_content=jullierme/revolut-test&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://api.travis-ci.com/jullierme/revolut-test.svg?branch=master)](https://travis-ci.org/jullierme/revolut-test)
 [![Coverage Status](https://coveralls.io/repos/github/jullierme/revolut-test/badge.svg?branch=master)](https://coveralls.io/github/jullierme/revolut-test?branch=master)
 

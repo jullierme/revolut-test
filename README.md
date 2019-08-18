@@ -162,3 +162,9 @@ Header:
     }
 }
 ```
+
+#### More information
+
+ - To ensure that an account does not transfer amounts without balance, the transfer method uses database transaction control.  
+ - To check asynchronous tests, please see the classes * StressTest.java
+

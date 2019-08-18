@@ -42,7 +42,7 @@ class TransactionCreateServiceStressTest {
     }
 
     @Test
-    @DisplayName("Should transfer balance without error in parallel")
+    @DisplayName("Should transfer balance without error (in parallel)")
     void givenTwoAccounts_whenStressPostRequest_thenShouldTransferAlmostAllAmountWithoutError() throws SQLException {
         final BigDecimal initialBalance = new BigDecimal(1000);
         final BigDecimal amountToTransfer = ONE.setScale(2, RoundingMode.DOWN);
@@ -82,7 +82,7 @@ class TransactionCreateServiceStressTest {
     }
 
     @Test
-    @DisplayName("Should NOT transfer from one account without enough balance in parallel")
+    @DisplayName("Should NOT transfer from one account without enough balance (in parallel)")
     void givenTwoAccounts_whenStressPostRequest_thenShouldNotTransferWithoutEnoughBalance() throws SQLException, InterruptedException {
         final BigDecimal initialBalance = new BigDecimal(100000);
         final BigDecimal amountToTransfer = ONE.setScale(2, RoundingMode.DOWN);

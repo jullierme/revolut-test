@@ -55,7 +55,6 @@ class AccountCreateServiceITest {
         assertNotNull(savedAccount);
         assertNotNull(savedAccount.getId());
         assertEquals(name, savedAccount.getName());
-        assertNotNull(savedAccount.getAccountNumber());
         assertEquals(balance, savedAccount.getBalance());
     }
 

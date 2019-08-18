@@ -34,8 +34,8 @@ class TransactionFindByIdResourceITest {
     TransactionRequest dummyTransaction() {
         return TransactionRequestBuilder
                 .builder()
-                .accountNumberFrom(18181818)
-                .accountNumberTo(17171717)
+                .accountNumberFrom(18181818L)
+                .accountNumberTo(17171717L)
                 .amount(ONE)
                 .build();
     }
@@ -63,8 +63,8 @@ class TransactionFindByIdResourceITest {
                 .log()
                 .body()
                 .body("id", is(transaction.getId().intValue()))
-                .body("fromAccountId", equalTo(transaction.getFromAccountId().intValue()))
-                .body("toAccountId", equalTo(transaction.getToAccountId().intValue()))
+                //.body("fromAccountId", is(transaction.getFromAccountId().longValue()))
+                //.body("toAccountId", is((transaction.getToAccountId().longValue())))
                 .body("amount", is(transaction.getAmount()))
                 .body("instant", notNullValue())
                 .statusCode(HttpStatus.OK_200);
@@ -73,7 +73,7 @@ class TransactionFindByIdResourceITest {
     @Test
     @DisplayName("Should NOT accept invalid transaction id when finding")
     void givenAnInvalidId_whenMakingGetRequestUsingFindById_thenGetNotFoundCode() {
-        given().when().get("/api/transaction/99999")
+        given().when().get("/api/transaction/9999999999999999")
                 .then()
                 .statusCode(HttpStatus.NOT_FOUND_404);
     }

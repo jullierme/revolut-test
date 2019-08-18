@@ -23,7 +23,7 @@ public class TransactionCreateServiceFactory {
             transactionCreateService = new TransactionCreateServiceImpl(
                     DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService(),
                     TransactionFindServiceFactory.instance().getTransactionFindByIdService(),
-                    AccountFindServiceFactory.instance().getAccountFindByAccountService()
+                    AccountFindServiceFactory.instance().getAccountFindByIdService()
             );
         }
 

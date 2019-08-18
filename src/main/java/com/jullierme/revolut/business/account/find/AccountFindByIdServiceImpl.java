@@ -9,10 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class AccountFindByIdServiceImpl implements AccountFindByIdService,
-        AccountFindByAccountService {
+public class AccountFindByIdServiceImpl implements AccountFindByIdService{
     private static final String FIND_ACCOUNT_BY_ID_SQL = "SELECT * FROM ACCOUNT WHERE ID = ?";
-    private static final String FIND_ACCOUNT_BY_ACCOUNT = "SELECT * FROM ACCOUNT WHERE ACCOUNT_NUMBER = ?";
 
     private DatabaseConnectionService databaseConnectionService;
 
@@ -41,27 +39,6 @@ public class AccountFindByIdServiceImpl implements AccountFindByIdService,
         }
     }
 
-    @Override
-    public Optional<Account> findByAccount(Integer accountNumber) {
-        if (accountNumber == null)
-            return Optional.empty();
-
-        try (Connection conn = databaseConnectionService.getConnection();
-             PreparedStatement ps = conn.prepareStatement(FIND_ACCOUNT_BY_ACCOUNT)) {
-
-            ps.setInt(1, accountNumber);
-
-            Account entity = loadEntity(ps);
-
-            conn.commit();
-            ps.close();
-
-            return Optional.ofNullable(entity);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private Account loadEntity(PreparedStatement ps) throws SQLException {
         if (ps == null)
             return null;
@@ -74,7 +51,6 @@ public class AccountFindByIdServiceImpl implements AccountFindByIdService,
             entity = new Account(
                     rs.getLong("ID"),
                     rs.getString("NAME"),
-                    rs.getInt("ACCOUNT_NUMBER"),
                     rs.getBigDecimal("BALANCE"));
 
         }

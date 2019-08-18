@@ -3,20 +3,20 @@ package com.jullierme.revolut.model.transaction;
 import java.math.BigDecimal;
 
 public class TransactionRequestBuilder {
-    private Integer accountNumberFrom;
-    private Integer accountNumberTo;
+    private Long accountNumberFrom;
+    private Long accountNumberTo;
     private BigDecimal amount;
 
     public static TransactionRequestBuilder builder() {
         return new TransactionRequestBuilder();
     }
 
-    public TransactionRequestBuilder accountNumberFrom(Integer accountNumberFrom) {
+    public TransactionRequestBuilder accountNumberFrom(Long accountNumberFrom) {
         this.accountNumberFrom = accountNumberFrom;
         return this;
     }
 
-    public TransactionRequestBuilder accountNumberTo(Integer accountNumberTo) {
+    public TransactionRequestBuilder accountNumberTo(Long accountNumberTo) {
         this.accountNumberTo = accountNumberTo;
         return this;
     }

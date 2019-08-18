@@ -63,7 +63,6 @@ class AccountCreateResourceITest {
                 .get(location)
                 .then()
                 .body("name", equalTo(account.getName()))
-                .body("accountNumber", notNullValue())
                 //.body("balance", is(equalTo(account.getBalance())))
                 .body("id", notNullValue())
                 .statusCode(HttpStatus.OK_200);

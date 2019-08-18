@@ -5,7 +5,6 @@ import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 public class AccountFindServiceFactory {
     private static AccountFindServiceFactory factoryIntance;
     private static AccountFindByIdService findByIdService;
-    private static AccountFindByAccountService findByAccountService;
 
     private AccountFindServiceFactory(){}
 
@@ -25,15 +24,5 @@ public class AccountFindServiceFactory {
         }
 
         return findByIdService;
-    }
-
-    public AccountFindByAccountService getAccountFindByAccountService() {
-        if (findByAccountService == null) {
-            findByAccountService = new AccountFindByIdServiceImpl(
-                    DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService()
-            );
-        }
-
-        return findByAccountService;
     }
 }

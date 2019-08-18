@@ -26,8 +26,8 @@ class TransactionCreateResourceITest {
     TransactionRequest dummyTransaction() {
         return TransactionRequestBuilder
                 .builder()
-                .accountNumberFrom(18181818)
-                .accountNumberTo(17171717)
+                .accountNumberFrom(18181818L)
+                .accountNumberTo(17171717L)
                 .amount(ONE)
                 .build();
     }
@@ -65,8 +65,8 @@ class TransactionCreateResourceITest {
     @MethodSource("invalidParametersToTransferAmountTransaction")
     @DisplayName("Should invalid parameters amount from one account without balance")
     void givenNewTransaction_whenMakingPostRequestWithInvalidParameters_thenBadRequest(
-            Integer accountNumberFrom,
-            Integer accountNumberTo,
+            Long accountNumberFrom,
+            Long accountNumberTo,
             BigDecimal amount
     ) {
         TransactionRequest transactionRequest = TransactionRequestBuilder
@@ -87,9 +87,9 @@ class TransactionCreateResourceITest {
 
     private static Stream<Arguments> invalidParametersToTransferAmountTransaction() {
         return Stream.of(
-                arguments(18181818, 17171717, null),
-                arguments(18181818, null, TEN),
-                arguments(null, 17171717, TEN)
+                arguments(18181818L, 17171717L, null),
+                arguments(18181818L, null, TEN),
+                arguments(null, 17171717L, TEN)
         );
     }
 }

@@ -3,25 +3,25 @@ package com.jullierme.revolut.model.transaction;
 import java.math.BigDecimal;
 
 public class TransactionRequest {
-    private Integer accountNumberFrom;
-    private Integer accountNumberTo;
+    private Long accountNumberFrom;
+    private Long accountNumberTo;
     private BigDecimal amount;
 
     public TransactionRequest() {}
 
-    public TransactionRequest(Integer accountNumberFrom,
-                              Integer accountNumberTo,
+    public TransactionRequest(Long accountNumberFrom,
+                              Long accountNumberTo,
                               BigDecimal amount) {
         this.accountNumberFrom = accountNumberFrom;
         this.accountNumberTo = accountNumberTo;
         this.amount = amount;
     }
 
-    public Integer getAccountNumberFrom() {
+    public Long getAccountNumberFrom() {
         return accountNumberFrom;
     }
 
-    public Integer getAccountNumberTo() {
+    public Long getAccountNumberTo() {
         return accountNumberTo;
     }
 

@@ -44,7 +44,6 @@ class AccountCreateServiceStressTest {
             Account savedAccount = null;
             try {
                 savedAccount = accountCreateService.create(account);
-                System.out.println(value);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -53,7 +52,6 @@ class AccountCreateServiceStressTest {
             assertNotNull(savedAccount);
             assertNotNull(savedAccount.getId());
             assertEquals(name, savedAccount.getName());
-            assertNotNull(savedAccount.getAccountNumber());
             assertEquals(balance, savedAccount.getBalance());
         });
     }

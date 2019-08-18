@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 
 import static java.math.BigDecimal.ONE;
@@ -66,8 +65,8 @@ class TransactionFindByIdServiceITest {
     private TransactionRequest dummyTransaction() {
         return TransactionRequestBuilder
                 .builder()
-                .accountNumberFrom(18181818)
-                .accountNumberTo(17171717)
+                .accountNumberFrom(18181818L)
+                .accountNumberTo(17171717L)
                 .amount(ONE)
                 .build();
     }

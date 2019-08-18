@@ -2,6 +2,8 @@ package com.jullierme.revolut.business.account.resource;
 
 import com.jullierme.revolut.business.account.find.AccountFindByIdService;
 import com.jullierme.revolut.business.account.find.AccountFindServiceFactory;
+import com.jullierme.revolut.model.account.AccountMapper;
+import com.jullierme.revolut.model.account.AccountMapperImpl;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,6 +15,7 @@ import javax.ws.rs.core.Response;
 @Path("/account")
 public class AccountFindByIdResource {
     private AccountFindByIdService findByIdService;
+    private AccountMapper accountMapper;
 
     public AccountFindByIdResource() {
         createServices();
@@ -20,6 +23,7 @@ public class AccountFindByIdResource {
 
     private void createServices() {
         findByIdService = AccountFindServiceFactory.instance().getAccountFindByIdService();
+        accountMapper = new AccountMapperImpl();
     }
 
     @GET
@@ -30,7 +34,7 @@ public class AccountFindByIdResource {
             return findByIdService.find(id)
                     .map(entity -> Response
                             .status(Response.Status.OK)
-                            .entity(entity)
+                            .entity(accountMapper.toAccountDto(entity))
                             .build())
                     .orElse(Response
                             .status(Response.Status.NOT_FOUND)

@@ -15,10 +15,10 @@ class AccountFindByIdResourceITest {
     @Test
     @DisplayName("Should find account by id")
     void givenSavedAccount_whenGetRequest_thenShouldResultAccount() {
-        given().when().get("/api/account/1")
+        given().when().get("/api/account/18181818")
                 .then()
                 .body("name", equalTo("Jullierme Barros"))
-                .body("accountNumber",equalTo(18181818))
+                .body("id",equalTo(18181818))
                 .statusCode(HttpStatus.OK_200);
     }
 

@@ -74,8 +74,8 @@ class TransactionCreateServiceITest {
 
         TransactionRequest request = TransactionRequestBuilder
                 .builder()
-                .accountNumberFrom(accountFrom.getAccountNumber())
-                .accountNumberTo(accountTo.getAccountNumber())
+                .accountNumberFrom(accountFrom.getId())
+                .accountNumberTo(accountTo.getId())
                 .amount(amountToTransfer)
                 .build();
 
@@ -124,8 +124,8 @@ class TransactionCreateServiceITest {
 
         TransactionRequest request = TransactionRequestBuilder
                 .builder()
-                .accountNumberFrom(accountFrom.getAccountNumber())
-                .accountNumberTo(accountTo.getAccountNumber())
+                .accountNumberFrom(accountFrom.getId())
+                .accountNumberTo(accountTo.getId())
                 .amount(amountToTransfer)
                 .build();
 
@@ -141,8 +141,8 @@ class TransactionCreateServiceITest {
     @MethodSource("invalidParametersToTransferFrom")
     @DisplayName("Should NOT accept invalid parameters when transferring")
     void givenInvalidParameters_whenTransferFrom_thenShouldThrowException(
-            Integer accountNumberFrom,
-            Integer accountNumberTo,
+            Long accountNumberFrom,
+            Long accountNumberTo,
             BigDecimal amount) {
         //given parameters
         TransactionRequest transactionRequest = TransactionRequestBuilder
@@ -162,9 +162,9 @@ class TransactionCreateServiceITest {
 
     private static Stream<Arguments> invalidParametersToTransferFrom() {
         return Stream.of(
-                arguments(18181818, 17171717, null),
-                arguments(18181818, null, TEN),
-                arguments(null, 17171717, TEN)
+                arguments(18181818L, 17171717L, null),
+                arguments(18181818L, null, TEN),
+                arguments(null, 17171717L, TEN)
         );
     }
 }

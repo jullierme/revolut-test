@@ -63,9 +63,9 @@ a pre-installed container/server).
  
    - REST Assured
       
-#### A code generator for bean mappings
+#### JDBC Connection Pool (Allow get async connections)
 
-   - MapStruct 
+   - Tomcat JDBC
          
 # Instructions
 

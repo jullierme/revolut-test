@@ -1,6 +1,6 @@
 package com.jullierme.revolut.business.transaction.create;
 
-import com.jullierme.revolut.business.account.find.AccountFindByAccountService;
+import com.jullierme.revolut.business.account.find.AccountFindByIdService;
 import com.jullierme.revolut.business.transaction.find.TransactionFindByIdService;
 import com.jullierme.revolut.database.DatabaseConnectionService;
 import com.jullierme.revolut.model.account.Account;
@@ -28,22 +28,22 @@ public class TransactionCreateServiceImpl implements TransactionCreateService {
 
     private DatabaseConnectionService databaseConnectionService;
     private TransactionFindByIdService transactionFindByIdService;
-    private AccountFindByAccountService accountFindByAccountService;
+    private AccountFindByIdService accountFindByIdService;
 
 
     public TransactionCreateServiceImpl(DatabaseConnectionService databaseConnectionService,
                                         TransactionFindByIdService transactionFindByIdService,
-                                        AccountFindByAccountService accountFindByAccountService) {
+                                        AccountFindByIdService accountFindByIdService) {
         this.databaseConnectionService = databaseConnectionService;
         this.transactionFindByIdService = transactionFindByIdService;
-        this.accountFindByAccountService = accountFindByAccountService;
+        this.accountFindByIdService = accountFindByIdService;
     }
 
-    private Account getAccount(Integer accountNumber) {
+    private Account getAccount(Long accountNumber) {
         if(accountNumber == null)
             throw new IllegalArgumentException();
 
-        return accountFindByAccountService.findByAccount(accountNumber)
+        return accountFindByIdService.find(accountNumber)
                 .orElseThrow(() -> new NotFoundException("Account " + accountNumber + " not found"));
     }
 

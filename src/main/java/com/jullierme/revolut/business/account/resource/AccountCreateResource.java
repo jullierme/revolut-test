@@ -7,7 +7,6 @@ import com.jullierme.revolut.model.account.AccountDto;
 import com.jullierme.revolut.model.account.AccountMapper;
 import com.jullierme.revolut.model.account.AccountMapperImpl;
 
-import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;

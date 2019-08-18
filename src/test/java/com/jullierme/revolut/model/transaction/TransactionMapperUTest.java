@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-
 import java.math.BigDecimal;
 
 import static java.math.BigDecimal.TEN;

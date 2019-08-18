@@ -1,9 +1,5 @@
 package com.jullierme.revolut.model.account;
 
-import com.jullierme.revolut.model.account.Account;
-import com.jullierme.revolut.model.account.AccountDto;
-import com.jullierme.revolut.model.account.AccountMapper;
-import com.jullierme.revolut.model.account.AccountMapperImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -13,17 +13,22 @@ public class TransactionFindServiceFactory {
     }
 
     public static TransactionFindByIdService getInstance() {
-        if (instance == null) {
+        /*Using localRef, we are reducing the access of volatile variable to just one for positive use case.*/
+        TransactionFindByIdService localRef = instance;
+
+        if (localRef == null) {
             //synchronized block to remove overhead
             synchronized (TransactionFindServiceFactory.class) {
-                if (instance == null) {
+                localRef = instance;
+
+                if (localRef == null) {
                     // if instance is null, initialize
-                    instance = new TransactionFindByIdServiceImpl(DatabaseConnectionServiceFactory.getInstance());
+                    instance = localRef = new TransactionFindByIdServiceImpl(DatabaseConnectionServiceFactory.getInstance());
                 }
 
             }
         }
 
-        return instance;
+        return localRef;
     }
 }

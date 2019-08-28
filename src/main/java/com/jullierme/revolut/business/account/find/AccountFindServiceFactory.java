@@ -1,8 +1,11 @@
 package com.jullierme.revolut.business.account.find;
 
-import com.jullierme.revolut.business.transaction.create.TransactionCreateServiceFactory;
 import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 
+/*
+ * Thread Safe Singleton
+ *   - Lazy initialization with Double check locking
+ * */
 public class AccountFindServiceFactory {
     private static volatile AccountFindByIdService instance;
 
@@ -10,12 +13,17 @@ public class AccountFindServiceFactory {
     }
 
     public static AccountFindByIdService getInstance() {
-        if (instance == null) {
+        /*Using localRef, we are reducing the access of volatile variable to just one for positive usecase.*/
+        AccountFindByIdService localRef = instance;
+
+        if (localRef == null) {
             //synchronized block to remove overhead
             synchronized (AccountFindServiceFactory.class) {
-                if (instance == null) {
+                localRef = instance;
+
+                if (localRef == null) {
                     // if instance is null, initialize
-                    instance = new AccountFindByIdServiceImpl(
+                    instance = localRef = new AccountFindByIdServiceImpl(
                             DatabaseConnectionServiceFactory.getInstance()
                     );
                 }
@@ -23,6 +31,6 @@ public class AccountFindServiceFactory {
             }
         }
 
-        return instance;
+        return localRef;
     }
 }

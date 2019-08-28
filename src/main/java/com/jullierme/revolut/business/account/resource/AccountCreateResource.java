@@ -20,7 +20,7 @@ import java.sql.SQLException;
 @Path("/account")
 public class AccountCreateResource {
     @Context
-    UriInfo uriInfo;
+    private UriInfo uriInfo;
 
     private AccountCreateService accountCreateService;
     private AccountMapper accountMapper;

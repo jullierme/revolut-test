@@ -16,7 +16,7 @@ class DatabaseConnectionServiceITest {
     @DisplayName("Should return a new Database Opened Connection without auto commit")
     void givenDatabaseConnectionFactory_whenGetConnection_thenShouldReturnConnection() throws SQLException {
         //given
-        DatabaseConnectionService service = DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService();
+        DatabaseConnectionService service = DatabaseConnectionServiceFactory.getInstance();
 
         //when
         Connection connection = service.getConnection();

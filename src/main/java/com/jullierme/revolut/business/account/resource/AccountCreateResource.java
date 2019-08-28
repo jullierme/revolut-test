@@ -26,7 +26,7 @@ public class AccountCreateResource {
     private AccountMapper accountMapper;
 
     public AccountCreateResource() {
-        accountCreateService = AccountCreateServiceFactory.instance().getAccountCreateService();
+        accountCreateService = AccountCreateServiceFactory.getInstance();
         accountMapper = new AccountMapperImpl();
     }
 

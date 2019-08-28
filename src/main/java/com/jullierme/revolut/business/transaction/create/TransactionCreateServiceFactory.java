@@ -5,28 +5,26 @@ import com.jullierme.revolut.business.transaction.find.TransactionFindServiceFac
 import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 
 public class TransactionCreateServiceFactory {
-    private static TransactionCreateServiceFactory factoryInstance;
-    private static TransactionCreateService transactionCreateService;
+    private static volatile TransactionCreateService instance;
 
     private TransactionCreateServiceFactory(){}
 
-    public static TransactionCreateServiceFactory instance() {
-        if (factoryInstance == null) {
-            factoryInstance = new TransactionCreateServiceFactory();
+    public static TransactionCreateService getInstance() {
+        if (instance == null) {
+            //synchronized block to remove overhead
+            synchronized (TransactionCreateServiceFactory.class) {
+                if (instance == null) {
+                    // if instance is null, initialize
+                    instance = new TransactionCreateServiceImpl(
+                            DatabaseConnectionServiceFactory.getInstance(),
+                            TransactionFindServiceFactory.getInstance(),
+                            AccountFindServiceFactory.getInstance()
+                    );
+                }
+
+            }
         }
 
-        return factoryInstance;
-    }
-
-    public TransactionCreateService getTransactionCreateService() {
-        if (transactionCreateService == null) {
-            transactionCreateService = new TransactionCreateServiceImpl(
-                    DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService(),
-                    TransactionFindServiceFactory.instance().getTransactionFindByIdService(),
-                    AccountFindServiceFactory.instance().getAccountFindByIdService()
-            );
-        }
-
-        return transactionCreateService;
+        return instance;
     }
 }

@@ -13,10 +13,9 @@ class AccountFindServiceFactoryITest {
     @DisplayName("Should return a new AccountFindByAccountService instance")
     void givenAccountFindServiceFactory_whenGetAccountFindByIdService_thenShouldReturnNewInstance() {
         //given
-        AccountFindServiceFactory factory = AccountFindServiceFactory.instance();
 
         //when
-        AccountFindByIdService service = factory.getAccountFindByIdService();
+        AccountFindByIdService service = AccountFindServiceFactory.getInstance();
 
         //then
         assertNotNull(service);

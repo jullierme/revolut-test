@@ -24,7 +24,7 @@ class AccountCreateServiceStressTest {
 
     @BeforeEach
     void beforeEach() {
-        accountCreateService = AccountCreateServiceFactory.instance().getAccountCreateService();
+        accountCreateService = AccountCreateServiceFactory.getInstance();
     }
 
     @Test

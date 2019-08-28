@@ -26,7 +26,7 @@ class TransactionFindByIdResourceITest {
 
     @BeforeEach
     void beforeEach() {
-        transactionCreateService = TransactionCreateServiceFactory.instance().getTransactionCreateService();
+        transactionCreateService = TransactionCreateServiceFactory.getInstance();
     }
 
     TransactionRequest dummyTransaction() {

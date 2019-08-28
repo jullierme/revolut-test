@@ -14,10 +14,9 @@ class TransactionCreateServiceFactoryITest {
     @DisplayName("Should return a new TransactionCreateService instance")
     void givenTransactionCreateServiceFactory_whenGetTransactionCreateService_thenShouldReturnNewInstance() {
         //given
-        TransactionCreateServiceFactory factory = TransactionCreateServiceFactory.instance();
 
         //when
-        TransactionCreateService service = factory.getTransactionCreateService();
+        TransactionCreateService service = TransactionCreateServiceFactory.getInstance();
 
         //then
         assertNotNull(service);

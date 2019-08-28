@@ -30,8 +30,8 @@ class AccountFindByIdServiceITest {
 
     @BeforeEach
     void setup() {
-        accountFindByIdService = AccountFindServiceFactory.instance().getAccountFindByIdService();
-        accountCreateService = AccountCreateServiceFactory.instance().getAccountCreateService();
+        accountFindByIdService = AccountFindServiceFactory.getInstance();
+        accountCreateService = AccountCreateServiceFactory.getInstance();
     }
 
     @Test

@@ -30,8 +30,8 @@ class TransactionFindByIdServiceITest {
 
     @BeforeEach
     void setup() {
-        transactionFindByIdService = TransactionFindServiceFactory.instance().getTransactionFindByIdService();
-        transactionCreateService = TransactionCreateServiceFactory.instance().getTransactionCreateService();
+        transactionFindByIdService = TransactionFindServiceFactory.getInstance();
+        transactionCreateService = TransactionCreateServiceFactory.getInstance();
     }
 
 

@@ -14,10 +14,9 @@ class TransactionFindServiceFactoryITest {
     @DisplayName("Should return a new TransactionFindByIdService instance")
     void givenTransactionFindServiceFactory_whenGetTransactionFindByIdService_thenShouldReturnNewInstance() {
         //given
-        TransactionFindServiceFactory factory = TransactionFindServiceFactory.instance();
 
         //when
-        TransactionFindByIdService service = factory.getTransactionFindByIdService();
+        TransactionFindByIdService service = TransactionFindServiceFactory.getInstance();
 
         //then
         assertNotNull(service);

@@ -14,10 +14,9 @@ class DatabaseConnectionServiceFactoryITest {
     @DisplayName("Should return a new TransactionFindByIdService instance")
     void givenDatabaseConnectionServiceFactory_whenGetTransactionFindByIdService_thenShouldReturnNewInstance() {
         //given
-        DatabaseConnectionServiceFactory factory = DatabaseConnectionServiceFactory.getInstance();
 
         //when
-        DatabaseConnectionService service = factory.getDatabaseConnectionService();
+        DatabaseConnectionService service = DatabaseConnectionServiceFactory.getInstance();
 
         //then
         assertNotNull(service);

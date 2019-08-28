@@ -36,9 +36,9 @@ class TransactionCreateServiceStressTest {
 
     @BeforeEach
     void setup() {
-        transactionCreateService = TransactionCreateServiceFactory.instance().getTransactionCreateService();
-        accountFindByIdService = AccountFindServiceFactory.instance().getAccountFindByIdService();
-        accountCreateService = AccountCreateServiceFactory.instance().getAccountCreateService();
+        transactionCreateService = TransactionCreateServiceFactory.getInstance();
+        accountFindByIdService = AccountFindServiceFactory.getInstance();
+        accountCreateService = AccountCreateServiceFactory.getInstance();
     }
 
     @Test

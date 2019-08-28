@@ -22,7 +22,7 @@ public class AccountFindByIdResource {
     }
 
     private void createServices() {
-        findByIdService = AccountFindServiceFactory.instance().getAccountFindByIdService();
+        findByIdService = AccountFindServiceFactory.getInstance();
         accountMapper = new AccountMapperImpl();
     }
 

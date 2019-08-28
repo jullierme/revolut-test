@@ -14,10 +14,9 @@ class AccountCreateServiceFactoryITest {
     @DisplayName("Should return a new AccountCreateService instance")
     void givenAccountCreateServiceFactory_whenAccountCreateService_thenShouldReturnNewInstance() {
         //given
-        AccountCreateServiceFactory factory = AccountCreateServiceFactory.instance();
 
         //when
-        AccountCreateService service = factory.getAccountCreateService();
+        AccountCreateService service = AccountCreateServiceFactory.getInstance();
 
         //then
         assertNotNull(service);

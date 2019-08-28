@@ -28,7 +28,7 @@ public class TransactionCreateResource {
     }
 
     private void createServices() {
-        transactionCreateService = TransactionCreateServiceFactory.instance().getTransactionCreateService();
+        transactionCreateService = TransactionCreateServiceFactory.getInstance();
     }
 
     @POST

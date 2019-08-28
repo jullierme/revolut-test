@@ -2,26 +2,28 @@ package com.jullierme.revolut.business.transaction.find;
 
 import com.jullierme.revolut.database.DatabaseConnectionServiceFactory;
 
+/*
+ * Thread Safe Singleton
+ *   - Lazy initialization with Double check locking
+ * */
 public class TransactionFindServiceFactory {
-    private static TransactionFindByIdService transactionFindByIdService;
-    private static TransactionFindServiceFactory factoryService;
+    private static volatile TransactionFindByIdService instance;
 
-    private TransactionFindServiceFactory(){}
-
-    public static TransactionFindServiceFactory instance() {
-        if (factoryService == null) {
-            factoryService = new TransactionFindServiceFactory();
-        }
-
-        return factoryService;
+    private TransactionFindServiceFactory() {
     }
 
-    public TransactionFindByIdService getTransactionFindByIdService() {
-        if (transactionFindByIdService == null) {
-            transactionFindByIdService = new TransactionFindByIdServiceImpl(
-                    DatabaseConnectionServiceFactory.getInstance().getDatabaseConnectionService());
+    public static TransactionFindByIdService getInstance() {
+        if (instance == null) {
+            //synchronized block to remove overhead
+            synchronized (TransactionFindServiceFactory.class) {
+                if (instance == null) {
+                    // if instance is null, initialize
+                    instance = new TransactionFindByIdServiceImpl(DatabaseConnectionServiceFactory.getInstance());
+                }
+
+            }
         }
 
-        return transactionFindByIdService;
+        return instance;
     }
 }
